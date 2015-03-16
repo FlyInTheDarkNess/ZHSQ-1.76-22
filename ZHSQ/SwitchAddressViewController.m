@@ -24,6 +24,11 @@ extern NSString *xiaoquming;
 extern NSString *string_Account;
 extern NSString *string_Password;
 extern NSString *area_id;
+/*
+ 添加全局属性
+ */
+extern NSString *Address_id;
+extern NSString *charge_mode;
 @interface SwitchAddressViewController ()
 
 {
@@ -156,10 +161,43 @@ extern NSString *area_id;
     
 
 
-
+    /*
     UITableViewCell *cell=[tableview cellForRowAtIndexPath:indexPath];
     sss=cell.textLabel.text;
     str_address_id=[newsArr[indexPath.row] objectForKey:@"address_id"];
+     */
+    /*
+     修改人 赵忠良
+     修改时间 15.3.16 pm 1.44
+     修改原因 小区切换无效
+     */
+    //*******************
+    UITableViewCell *cell=[tableview cellForRowAtIndexPath:indexPath];
+    sss=cell.textLabel.text;
+    NSDictionary *Dic=[newsArr objectAtIndex:indexPath.row];
+    Address_id=[Dic objectForKey:@"address_id"];
+    charge_mode=[Dic objectForKey:@"charge_mode"];
+    
+    
+    [SurveyRunTimeData sharedInstance].community_id = Dic[@"community_id"];
+    [SurveyRunTimeData sharedInstance].quarter_id = Dic[@"quarter_id"];
+    [SurveyRunTimeData sharedInstance].city_id =  Dic[@"city_id"];
+    [SurveyRunTimeData sharedInstance].area_id = Dic[@"area_id"];
+    
+    xiaoquIDString=[Dic objectForKey:@"quarter_id"];
+    xiaoquming=[Dic objectForKey:@"quarter_name"];
+    community_id=[Dic objectForKey:@"community_id"];
+    area_id=[Dic objectForKey:@"area_id"];
+    NSString *aaa=[NSString stringWithFormat:@"%@%@%@%@",[Dic objectForKey:@"quarter_name"],[Dic objectForKey:@"building_name"],[Dic objectForKey:@"unit_name"],[Dic objectForKey:@"room_name"]];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:aaa forKey:@"dizhixinxi"];
+    
+    str_address_id=[Dic objectForKey:@"address_id"];
+    [self tijiao];
+    //********************
+    /*
+    
+     */
 }
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -272,6 +310,7 @@ extern NSString *area_id;
                             NSString *string=[[arr_info objectAtIndex:i] objectForKey:@"isdefaultshow"];
                             if ([string isEqualToString:@"1"])
                             {
+                                /*
                                 // NSLog(@"是  1");
                                 NSDictionary *Dic=[arr_info objectAtIndex:i];
                                 xiaoquIDString=[Dic objectForKey:@"quarter_id"];
@@ -292,6 +331,31 @@ extern NSString *area_id;
                                 
                                 [userDefaults setObject:community_id forKey:@"community_id"];
                                 [userDefaults synchronize];
+                                 */
+                                
+                                /*
+                                 
+                                 */
+                                //***********************
+                                NSDictionary *Dic=[arr_info objectAtIndex:i];
+                                Address_id=[Dic objectForKey:@"address_id"];
+                                charge_mode=[Dic objectForKey:@"charge_mode"];
+                                
+                                
+                                [SurveyRunTimeData sharedInstance].community_id = Dic[@"community_id"];
+                                [SurveyRunTimeData sharedInstance].quarter_id = Dic[@"quarter_id"];
+                                [SurveyRunTimeData sharedInstance].city_id =  Dic[@"city_id"];
+                                [SurveyRunTimeData sharedInstance].area_id = Dic[@"area_id"];
+                                
+                                xiaoquIDString=[Dic objectForKey:@"quarter_id"];
+                                xiaoquming=[Dic objectForKey:@"quarter_name"];
+                                community_id=[Dic objectForKey:@"community_id"];
+                                area_id=[Dic objectForKey:@"area_id"];
+                                NSString *aaa=[NSString stringWithFormat:@"%@%@%@%@",[Dic objectForKey:@"quarter_name"],[Dic objectForKey:@"building_name"],[Dic objectForKey:@"unit_name"],[Dic objectForKey:@"room_name"]];
+                                NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+                                [userDefaults setObject:aaa forKey:@"dizhixinxi"];
+                                [userDefaults synchronize];
+                                //**************************
                             }
                             else
                             {

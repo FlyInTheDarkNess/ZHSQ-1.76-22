@@ -116,6 +116,7 @@
 #define BaoLiao_m44_03       @"http://115.28.149.27:8090/V3.10/WebUI/api/serverApi/m44_03.ashx"       //我得爆料信息
 #define SheQuHuDong_m10_09   @"http://115.28.149.27:8090/V3.10/WebUI/api/serverApi/m10_09.ashx"       //删除帖子
 #define SheQuFuWu_m3_10      @"http://115.28.149.27:8090/V3.10/WebUI/api/serverApi/m3_10.ashx"        //删除商家回复
+#define QieHuanXiaoQu_m24_06      @"http://115.28.149.27:8090/V3.10/WebUI/api/serverApi/m24_06.ashx"        //切换地址
 
 */
 
@@ -163,6 +164,10 @@
 #define FangJianHao_m24_09      @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m24_09.ashx"       //房间号
 #define BaoCunGeRenXinXi_m24_10 @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m24_10.ashx"       //保存个人信息
 #define BaoCunXiaoQuXinXi_m24_03 @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m24_03.ashx"       //保存小区信息
+/*
+ 修改时间 3.16
+ 修改原因 切换住址接口变化
+ */
 #define QieHuanZhuZhiXinXi_24_012 @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m24_12.ashx"    //切换住址
 #define SheQuFuWu_m3_10         @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m3_10.ashx"        //删除商家回复
 #define SheQuFuWu_m3_08         @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m3_08.ashx"        //社区服务
@@ -231,7 +236,7 @@
 #define TuanGou_m40_13       @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m40_13.ashx"       //团购商品提交
 #define BaoLiao_m44_08       @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m44_08.ashx"       //我得爆料主键id
 #define BaoLiao_m44_03       @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m44_03.ashx"       //我得爆料信息
-
+#define QieHuanXiaoQu_m24_06      @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m24_06.ashx"        //切换地址
  
 @interface URL : NSObject
 

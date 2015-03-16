@@ -18,6 +18,13 @@
 #import "SerializationComplexEntities.h"
 #import "Pay ViewController.h"
 #import "MyBill.h"
+
+/*
+ 添加单独一项付费功能
+ */
+#import "OneBillTableViewController.h"
+
+
 extern NSString *Session;
 extern NSString *Address_id;
 extern NSString *Payment_url;
@@ -263,6 +270,40 @@ extern NSString *charge_mode;
     }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    /*
+    
+    OneBillTableViewController *oneBillVC = [[OneBillTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
+    NSDictionary *dic = [NSDictionary dictionaryWithDictionary:newsArr[indexPath.row]];
+    NSString *strr=Type_Arr[indexPath.row];
+    NSLog(@"%@",Type_Arr);
+    if ([strr isEqualToString:@"1"])
+    {
+        oneBillVC.title = @"(水费)账单详情";
+        oneBillVC.billType = 1;
+    }
+    if ([strr isEqualToString:@"2"])
+    {
+        oneBillVC.title =@"(物业费)账单详情";
+        oneBillVC.billType = 2;
+    }
+    if ([strr isEqualToString:@"3"])
+    {
+        oneBillVC.title =@"(暖气费)账单详情";
+        oneBillVC.billType = 3;
+    }
+    if ([strr isEqualToString:@"4"])
+    {
+        oneBillVC.title =@"(停车管理费)账单详情";
+        oneBillVC.billType = 4;
+    }
+    oneBillVC.detailDic = dic;
+    UINavigationController *Nav = [[UINavigationController alloc]initWithRootViewController:oneBillVC];
+    [self presentViewController:Nav animated:YES completion:nil];
+     */
+    
+    
+/*
 //    seckillBtn.tag=indexPath.row;
 //    if ([charge_mode isEqualToString:@"0"])
 //    {
@@ -289,6 +330,7 @@ extern NSString *charge_mode;
 //            return;
 //        }
 //    }
+ */
 
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

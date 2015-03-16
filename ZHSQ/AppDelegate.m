@@ -42,6 +42,18 @@ extern NSString *charge_mode;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
+    
+    //设置navigation图片
+    //*****************************
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIColor whiteColor], UITextAttributeTextColor,
+                                                          [UIColor colorWithRed:0 green:0.7 blue:0.8 alpha:1], UITextAttributeTextShadowColor,
+                                                          [NSValue valueWithUIOffset:UIOffsetMake(0, 0)], UITextAttributeTextShadowOffset,
+                                                          [UIFont fontWithName:@"Arial-Bold" size:0.0], UITextAttributeFont,
+                                                          nil]];
+    //******************************
     //[MobClick startWithAppkey:@"5428cc54fd98c5c94801a23c" reportPolicy:BATCH   channelId:@"Web"];
 
     //分享注册
