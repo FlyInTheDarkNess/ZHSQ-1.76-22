@@ -994,8 +994,8 @@
 		D5B3B8B419F119C9003424E2 /* UIImage+TOWebViewControllerIcons.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B3B8B019F119C9003424E2 /* UIImage+TOWebViewControllerIcons.m */; };
 		D5B5A0C31A08CC10006CF68A /* check_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D5B5A0C21A08CC10006CF68A /* check_icon.jpg */; };
 		D5B5DD2C1A0B48740028327E /* BangDingXinXi.m in Sources */ = {isa = PBXBuildFile; fileRef = D5B5DD2B1A0B48740028327E /* BangDingXinXi.m */; };
-		D5B615171A039CE50097903A /* checkc.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B615151A039CE50097903A /* checkc.png */; };
-		D5B615181A039CE50097903A /* checknull.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B615161A039CE50097903A /* checknull.png */; };
+		D5B615171A039CE50097903A /* chec.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B615151A039CE50097903A /* chec.png */; };
+		D5B615181A039CE50097903A /* checno.png in Resources */ = {isa = PBXBuildFile; fileRef = D5B615161A039CE50097903A /* checno.png */; };
 		D5C33DA71A12166000BFAFA9 /* ChangTuKeYunViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C33DA61A12166000BFAFA9 /* ChangTuKeYunViewController.m */; };
 		D5D71AF7197E3ACE004E88F6 /* fuwu.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D71AF6197E3ACE004E88F6 /* fuwu.m */; };
 		D5D71B3E197E6838004E88F6 /* FuWuYingYongXiangQingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D71B3D197E6838004E88F6 /* FuWuYingYongXiangQingViewController.m */; };
@@ -2512,8 +2512,8 @@
 		D5B5A0C21A08CC10006CF68A /* check_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = check_icon.jpg; sourceTree = "<group>"; };
 		D5B5DD2A1A0B48740028327E /* BangDingXinXi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BangDingXinXi.h; sourceTree = "<group>"; };
 		D5B5DD2B1A0B48740028327E /* BangDingXinXi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BangDingXinXi.m; sourceTree = "<group>"; };
-		D5B615151A039CE50097903A /* checkc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkc.png; sourceTree = "<group>"; };
-		D5B615161A039CE50097903A /* checknull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checknull.png; sourceTree = "<group>"; };
+		D5B615151A039CE50097903A /* chec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chec.png; sourceTree = "<group>"; };
+		D5B615161A039CE50097903A /* checno.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checno.png; sourceTree = "<group>"; };
 		D5C33DA51A12166000BFAFA9 /* ChangTuKeYunViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangTuKeYunViewController.h; sourceTree = "<group>"; };
 		D5C33DA61A12166000BFAFA9 /* ChangTuKeYunViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangTuKeYunViewController.m; sourceTree = "<group>"; };
 		D5D71AF5197E3ACE004E88F6 /* fuwu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fuwu.h; sourceTree = "<group>"; };
@@ -4271,8 +4271,8 @@
 				D5A5C6D319FA3278002DC59C /* JiaMiJieMi.m */,
 				C4F2464518F673070041CADD /* payeco_plugin_checkbox_checked.png */,
 				C4F2464618F673070041CADD /* payeco_plugin_checkbox_normal.png */,
-				D5B615151A039CE50097903A /* checkc.png */,
-				D5B615161A039CE50097903A /* checknull.png */,
+				D5B615151A039CE50097903A /* chec.png */,
+				D5B615161A039CE50097903A /* checno.png */,
 				C4F2464A18F677A60041CADD /* QCheckBox.h */,
 				C4F2464B18F677A60041CADD /* QCheckBox.m */,
 			);
@@ -5354,7 +5354,7 @@
 				7BD25D1C1AB560D700BF0A6B /* emoji_59@2x.png in Resources */,
 				D52B351F1A89F4F80001FE63 /* GroupBuyingGoodsCell.xib in Resources */,
 				C4A053771904E17E003F9807 /* m_tv.png in Resources */,
-				D5B615181A039CE50097903A /* checknull.png in Resources */,
+				D5B615181A039CE50097903A /* checno.png in Resources */,
 				7BD25D731AB560D700BF0A6B /* doc@2x.png in Resources */,
 				D54D57031A3D7DF900A65EE9 /* p004_zhoubian_unchecked.png in Resources */,
 				D50570E81A1F1FC40006E448 /* 05.jpg in Resources */,
@@ -5740,7 +5740,7 @@
 				C4A538B0195031150025E084 /* newsicon0509.png in Resources */,
 				C4F2464718F673070041CADD /* payeco_plugin_checkbox_checked.png in Resources */,
 				C49C09801904F01C009E22CC /* beijingtiao.png in Resources */,
-				D5B615171A039CE50097903A /* checkc.png in Resources */,
+				D5B615171A039CE50097903A /* chec.png in Resources */,
 				7BD25D011AB560D700BF0A6B /* emoji_34@2x.png in Resources */,
 				7BD25D351AB560D700BF0A6B /* keyboard_bg.png in Resources */,
 				D50B62D21A1595E8008C833C /* WoDeTingCheFei_WeiJiaoViewController.xib in Resources */,
@@ -6387,7 +6387,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = "ZHSQ/ZHSQ-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/libs/Release$(EFFECTIVE_PLATFORM_NAME)",
 					"$(PROJECT_DIR)",
@@ -6437,7 +6437,7 @@
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
 				);
 				INFOPLIST_FILE = "ZHSQ/ZHSQ-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(SRCROOT)/libs/Release$(EFFECTIVE_PLATFORM_NAME)",
 					"$(PROJECT_DIR)",

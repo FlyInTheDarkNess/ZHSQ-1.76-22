@@ -39,6 +39,9 @@ extern NSString *charge_mode;
     RegistrationAndLoginAndFindHttpService *sqHttpSer;
     //当前列表数据
     NSMutableArray *newsArr;
+    
+    //当前缴费列表数据
+    NSMutableArray *JFArr;
     //NSMutableArray *_fakeData;
     int startIndex;
     
@@ -61,6 +64,8 @@ extern NSString *charge_mode;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    JFArr = [NSMutableArray array];
     // Do any additional setup after loading the view.
     self.view.backgroundColor=[UIColor whiteColor];
     
@@ -100,17 +105,31 @@ extern NSString *charge_mode;
     [self.view addSubview:total_label];
     
     QCheckBox *_check1 = [[QCheckBox alloc] initWithDelegate:self];
-    _check1.frame = CGRectMake(20, kViewHeight-80, 60, 40);
+    _check1.frame = CGRectMake(20, kViewHeight-90, 60, 40);
     [_check1 setTitle:@"同意" forState:UIControlStateNormal];
     [_check1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [_check1.titleLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
     [self.view addSubview:_check1];
     [_check1 setChecked:YES];
+    
+    /*
+     添加协议跳转
+     */
+    //********************
+    UIButton *XYBtn=[[UIButton alloc]initWithFrame:CGRectMake(60, kViewHeight-90, 100, 40)];
+    [XYBtn setTitle:@"《支付服务协议》" forState:UIControlStateNormal];
+    XYBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+    [XYBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [XYBtn addTarget:self action:@selector(pushToXieyiVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:XYBtn];
+    //***********************
+    /*
     label=[[UILabel alloc]initWithFrame:CGRectMake(60, kViewHeight-80, 200, 40)];
     label.text=@"《支付服务协议》";
     label.font=[UIFont systemFontOfSize:12];
     label.textColor=[UIColor colorWithRed:135/255.0 green:206/255.0 blue:235/255.0 alpha:1];
     [self.view addSubview:label];
+     */
     
     Pay_btn=[[UIButton alloc]initWithFrame:CGRectMake(20, kViewHeight-40, kViewwidth-40, 40)];
     Pay_btn.backgroundColor=[UIColor colorWithRed:234/255.0 green:83/255.0 blue:87/255.0 alpha:1];
@@ -134,6 +153,13 @@ extern NSString *charge_mode;
   
     [MyBliiTableview headerBeginRefreshing];
    }
+
+
+/*
+ 获取主键
+ */
+
+
 -(void)ltDataInit
 {
     PayStatus=@"wuyefei";
@@ -157,6 +183,7 @@ extern NSString *charge_mode;
     [sqHttpSer beginQuery];
     isUp = YES;
 }
+
 -(void)weijiao
 {
     MyBliiTableview.frame=CGRectMake(0, 100, kViewwidth, kViewHeight-210);
@@ -252,9 +279,9 @@ extern NSString *charge_mode;
     if ([str_Status isEqualToString:@"weijiaofei"])
     {
         seckillBtn = (AXHButton *)[cell.contentView viewWithTag:7];
-        NSInteger a=indexPath.row;
-        seckillBtn.tag=a;
-        [seckillBtn setBackgroundImage:[UIImage imageNamed:@"checkc.png"] forState:UIControlStateNormal];
+
+        seckillBtn.indexPath = indexPath.row;
+        [seckillBtn setBackgroundImage:[UIImage imageNamed:@"chec.png"] forState:UIControlStateNormal];
         [seckillBtn addTarget:self action:@selector(xuanzhe:) forControlEvents:UIControlEventTouchUpInside];
     }
     
@@ -266,12 +293,27 @@ extern NSString *charge_mode;
 }
 -(void)xuanzhe:(AXHButton *)btn
 {
-    
+    NSDictionary *oneOrder = newsArr[btn.indexPath];
+    if ([JFArr indexOfObject:oneOrder]==NSNotFound) {
+        [JFArr addObject:oneOrder];
+        [btn setBackgroundImage:[UIImage imageNamed:@"chec.png"] forState:UIControlStateNormal];
+    }else{
+        [JFArr removeObject:oneOrder];
+        [btn setBackgroundImage:[UIImage imageNamed:@"checno.png"] forState:UIControlStateNormal];
     }
+    float sum=0;
+    for (NSDictionary *dic in JFArr) {
+        NSString *jine=[dic objectForKey:@"money_sum"];
+        float J=[jine floatValue];
+        sum=sum+J;
+    }
+    JinE=sum;
+    total_label.text=[NSString stringWithFormat:@"金额(元): %0.2f",JinE];
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    /*
     
     OneBillTableViewController *oneBillVC = [[OneBillTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:newsArr[indexPath.row]];
@@ -300,7 +342,7 @@ extern NSString *charge_mode;
     oneBillVC.detailDic = dic;
     UINavigationController *Nav = [[UINavigationController alloc]initWithRootViewController:oneBillVC];
     [self presentViewController:Nav animated:YES completion:nil];
-     */
+
     
     
 /*
@@ -351,6 +393,9 @@ extern NSString *charge_mode;
 }
 - (void)didSelectedCheckBox:(QCheckBox *)checkbox checked:(BOOL)checked
 {
+    if (JFArr.count < 1) {
+        return;
+    }
     
     if (checked==0)
     {
@@ -363,6 +408,9 @@ extern NSString *charge_mode;
         
     }
 }
+
+//缴费获取url
+
 -(void)jiaofei
 {
     NSString *str1=[NSString stringWithFormat:@"{\"session\":\"\"}"];
@@ -398,8 +446,8 @@ extern NSString *charge_mode;
             bill.session=Session;
             bill.remark1=[NSString stringWithFormat:@"用户住址:%@%@%@%@%@%@",[newsArr[0] objectForKey:@"city_name"],[newsArr[0] objectForKey:@"community_name"],[newsArr[0] objectForKey:@"quarter_name"],[newsArr[0] objectForKey:@"building_name"],[newsArr[0] objectForKey:@"unit_name"],[newsArr[0] objectForKey:@"room_name"]];
             bill.remark2=[NSString stringWithFormat:@"%@:", [newsArr[0] objectForKey:@"username"]];
-            bill.payment=[NSString stringWithFormat:@"%0.1f",JinE];
-            NSString *jin=[NSString stringWithFormat:@"%0.1f",JinE];
+            bill.payment=[NSString stringWithFormat:@"%0.2f",JinE];
+            NSString *jin=[NSString stringWithFormat:@"%0.2f",JinE];
             bill.property_id=[newsArr[0] objectForKey:@"property_id"];
             
             bill.proinfo=[NSString stringWithFormat:@"笑脸社区综合缴费金额:%@",jin];
@@ -429,6 +477,7 @@ extern NSString *charge_mode;
 -(void)didReceieveSuccess:(NSInteger)tag{
     switch (tag) {
             
+        //缴费账单主键列表
         case 12:{
             //缴费账单主键
             NSLog(@"主键id:%@      %@",sqHttpSer.responDict,PayStatus);
@@ -810,6 +859,23 @@ extern NSString *charge_mode;
         default:
             break;
     }
+    
+    /*
+     给选中要缴费的账单
+     */
+    [JFArr removeAllObjects];
+    float sum=0;
+    for (NSDictionary *dic in newsArr) {
+        [JFArr addObject:dic];
+        NSString *jine=[dic objectForKey:@"money_sum"];
+        float J=[jine floatValue];
+        sum=sum+J;
+    }
+    JinE=sum;
+    total_label.text=[NSString stringWithFormat:@"金额(元): %0.2f",JinE];
+//    [MyBliiTableview reloadData];
+    
+    
 }
 -(void)didReceieveFail:(NSInteger)tag{
     [MyBliiTableview headerEndRefreshing];
@@ -843,6 +909,17 @@ extern NSString *charge_mode;
 {
     [self dismissViewControllerAnimated:NO completion:nil];
 }
+
+/*
+ *支付服务协议跳转
+ */
+- (void)pushToXieyiVC{
+    SheQuFuWu_Title=@"支付服务协议";
+    Payment_url=@"http://www.xiaolianshequ.cn/download/treaty.html";
+    Pay_ViewController *subViewVCtr = [[Pay_ViewController alloc]init];
+    [self presentViewController:subViewVCtr animated:NO completion:nil];
+}
+
 
 
 @end

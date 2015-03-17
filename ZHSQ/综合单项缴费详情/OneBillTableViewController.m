@@ -7,11 +7,27 @@
 //
 
 #import "OneBillTableViewController.h"
+#import "HttpPostExecutor.h"
+#import "SBJsonParser.h"
+#import "MyBill.h"
+#import "SerializationComplexEntities.h"
+#import "RegistrationAndLoginAndFindHttpService.h"
+#import "Pay ViewController.h"
+#import "QCheckBox.h"
+extern NSString *Session;
+extern NSString *Address_id;
+extern NSString *Payment_url;
+extern NSString *SheQuFuWu_Title;
+extern NSString *charge_mode;
 
-@interface OneBillTableViewController ()
+@interface OneBillTableViewController ()<HttpDataServiceDelegate,QCheckBoxDelegate>
 {
     NSArray *itemTitleArr;
     NSArray *itemDetailArr;
+    
+    UIButton *jiaofeiBtn;//缴费按钮
+    //请求
+    RegistrationAndLoginAndFindHttpService *sqHttpSer;
 }
 
 @end
@@ -34,17 +50,17 @@
             //物业费
         case 2:
             itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"建筑面积",@"单价",@"缴费期间",@"物业费",@"优惠金额",@"应缴金额"];
-            itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"price",@"缴费期间",@"watervolume",@"price",@"money1",@"money2",@"money_sum"];
+            itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"price",@"缴费期间",@"money1",@"money2",@"money_sum"];
             break;
             //暖气费
         case 3:
-            itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"本次抄表日期",@"上次水表数",@"本次水表数",@"用水量",@"单价",@"水费",@"优惠金额",@"应缴金额"];
-            itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"peroid_end",@"water_num_start",@"water_num_end",@"watervolume",@"price",@"money1",@"money2",@"money_sum"];
+            itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"建筑面积",@"单价",@"缴费期间",@"暖气费",@"优惠金额",@"应缴金额"];
+            itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"price",@"缴费期间",@"money1",@"money2",@"money_sum"];
             break;
             //停车费
         case 4:
-            itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"本次抄表日期",@"上次水表数",@"本次水表数",@"用水量",@"单价",@"水费",@"优惠金额",@"应缴金额"];
-            itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"peroid_end",@"water_num_start",@"water_num_end",@"watervolume",@"price",@"money1",@"money2",@"money_sum"];
+            itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"车位信息",@"车牌号",@"缴费期间",@"水费",@"优惠金额",@"应缴金额"];
+            itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"car_site",@"car_no",@"缴费期间",@"money1",@"money2",@"money_sum"];
             break;
             
         default:
@@ -72,7 +88,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 10;
+    return itemTitleArr.count;
 }
 
 
@@ -82,77 +98,20 @@
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:str];
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.detailTextLabel.numberOfLines = 0;
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text = @"账单编号:";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"pay_id"]];
-            break;
-        case 1:
-            cell.textLabel.text = @"收费单位:";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"property_name"]];
-            break;
-        case 2:
-            cell.textLabel.text = @"客户姓名:";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"username"]];
-            break;
-        case 3:
-            cell.textLabel.text = @"客户地址:";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@%@%@%@",[detailDic objectForKey:@"community_name"],[detailDic objectForKey:@"quarter_name"],[detailDic objectForKey:@"building_name"],[detailDic objectForKey:@"unit_name"],[detailDic objectForKey:@"room_name"]];
-            break;
-        case 4:
-            cell.textLabel.text = @"建筑面积:";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"pay_id"]];
-            break;
-        case 5:
-            cell.textLabel.text = @"单价:";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"pay_id"]];
-            break;
-        case 6:
-            cell.textLabel.text = @"缴费期间:";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@",detailDic[@"period_start"],detailDic[@"peroid_end"]];
-            break;
-        case 7:
-        {
-            switch (self.billType) {
-                case 1:
-                    cell.textLabel.text = @"水费:";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"pay_id"]];
-                    break;
-                case 2:
-                    cell.textLabel.text = @"物业费:";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"pay_id"]];
-                    break;
-                case 3:
-                    cell.textLabel.text = @"暖气费:";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"pay_id"]];
-                    break;
-                case 4:
-                    cell.textLabel.text = @"停车费:";
-                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"pay_id"]];
-                    break;
-                    
-                default:
-                    break;
-            }
-        }
-            
-            break;
-        case 8:
-            cell.textLabel.text = @"优惠金额:";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"money2"]];
-            break;
-        case 9:
-            cell.textLabel.text = @"应缴金额:";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[@"money_sum"]];
-            break;
-        
-            
-        default:
-            break;
+    NSString *itemTitle = [NSString stringWithFormat:@"%@:",itemTitleArr[indexPath.row]];
+    if ([itemTitle isEqualToString:@"客户地址:"]) {
+        cell.textLabel.text = @"客户地址:";
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%@%@%@%@",[detailDic objectForKey:@"community_name"],[detailDic objectForKey:@"quarter_name"],[detailDic objectForKey:@"building_name"],[detailDic objectForKey:@"unit_name"],[detailDic objectForKey:@"room_name"]];
+    }else if([itemTitle isEqualToString:@"缴费期间:"]){
+        cell.textLabel.text = @"缴费期间:";
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@",detailDic[@"period_start"],detailDic[@"peroid_end"]];
+    }else{
+        cell.textLabel.text = itemTitle;
+        NSString *detailKey = [NSString stringWithFormat:@"%@",itemDetailArr[indexPath.row]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@",detailDic[detailKey]];
     }
-    
     
     // Configure the cell...
     
@@ -168,13 +127,42 @@
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:FooterId];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FooterId];
-        UIButton *jiaofeiBtn = [[UIButton alloc]initWithFrame:CGRectMake(80, 10, 160, 44)];
-        [jiaofeiBtn setBackgroundImage:[UIImage imageNamed:@"navigationBar"] forState:UIControlStateNormal];
-        [jiaofeiBtn setTitle:@"缴费" forState:UIControlStateNormal];
-        [jiaofeiBtn addTarget:self action:@selector(jiaofei:) forControlEvents:UIControlEventTouchUpInside];
-    }
+        NSString *pay_status = [NSString stringWithFormat:@"%@",detailDic[@"pay_status"]];
+        if ([pay_status isEqualToString:@"0"]) {
+            QCheckBox *_check1 = [[QCheckBox alloc] initWithDelegate:self];
+            _check1.frame = CGRectMake(20, 0, 60, 40);
+            [_check1 setTitle:@"同意" forState:UIControlStateNormal];
+            [_check1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [_check1.titleLabel setFont:[UIFont boldSystemFontOfSize:13.0f]];
+            [cell.contentView addSubview:_check1];
+            
+           UIButton *XYBtn=[[UIButton alloc]initWithFrame:CGRectMake(60, 0, 100, 40)];
+            [XYBtn setTitle:@"《支付服务协议》" forState:UIControlStateNormal];
+            XYBtn.titleLabel.font=[UIFont systemFontOfSize:12];
+            [XYBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            [XYBtn addTarget:self action:@selector(pushToXieyiVC) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:XYBtn];
+
+            jiaofeiBtn = [[UIButton alloc]initWithFrame:CGRectMake(20, 50, kViewwidth - 40, 44)];
+            [jiaofeiBtn setBackgroundImage:[UIImage imageNamed:@"navigationBar"] forState:UIControlStateNormal];
+            jiaofeiBtn.layer.masksToBounds = YES;
+            jiaofeiBtn.layer.cornerRadius = 6.0f;
+            jiaofeiBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+            [jiaofeiBtn setTitle:@"缴费" forState:UIControlStateNormal];
+            [jiaofeiBtn addTarget:self action:@selector(jiaofei:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:jiaofeiBtn];
+            [_check1 setChecked:YES];
+        }
+            }
     return cell;
-    
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 10;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 90;
 }
 
 /*
@@ -182,8 +170,119 @@
  */
 - (IBAction)jiaofei:(id)sender
 {
+    NSString *str1=[NSString stringWithFormat:@"{\"session\":\"\"}"];
+    NSString *str2=@"para=";
+    NSString *Str;
+    Str=[str2 stringByAppendingString:str1];
+    [HttpPostExecutor postExecuteWithUrlStr:ipAddress_m1_01 Paramters:Str FinishCallbackBlock:^(NSString *result){
+        // 执行post请求完成后的逻辑
+        if (result.length<=0)
+        {
+            UIAlertView * aler = [[UIAlertView alloc] initWithTitle:@"提示:未能取得用户ip地址" message:@"网络信号不佳，请选择好的网络" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [aler show];
+        }
+        else
+        {
+            NSString *string_Ip;
+            NSLog(@"ip地址: %@", result);
+            SBJsonParser *parser = [[SBJsonParser alloc] init];
+            NSError *error = nil;
+            NSDictionary *rootDic = [parser objectWithString:result error:&error];
+            NSString *daima=[rootDic objectForKey:@"ecode"];
+            int intString = [daima intValue];
+            if (intString==4000)
+            {
+                [SVProgressHUD showErrorWithStatus:@"服务器内部错误" duration:1];
+            }
+            if (intString==1000)
+            {
+                string_Ip=[rootDic objectForKey:@"ip"];
+            }
+            NSLog(@"%@",string_Ip);
+            MyBill *bill=[[MyBill alloc]init];
+            bill.session=Session;
+            bill.remark1=[NSString stringWithFormat:@"%@%@%@%@%@%@",[detailDic objectForKey:@"city_name"],[detailDic objectForKey:@"community_name"],[detailDic objectForKey:@"quarter_name"],[detailDic objectForKey:@"building_name"],[detailDic objectForKey:@"unit_name"],[detailDic objectForKey:@"room_name"]];
+            bill.remark2=[NSString stringWithFormat:@"%@:", [detailDic objectForKey:@"username"]];
+            bill.payment=[NSString stringWithFormat:@"%0.2f",[detailDic[@"money_sum"] floatValue]];
+            NSString *jin=[NSString stringWithFormat:@"%0.2f",[detailDic[@"money_sum"] floatValue]];
+            bill.property_id=[detailDic objectForKey:@"property_id"];
+            
+            bill.proinfo=[NSString stringWithFormat:@"笑脸社区综合缴费金额:%@",jin];
+            
+            bill.order_id=[NSString stringWithFormat:@"%@",[detailDic objectForKey:@"pay_id"]];
+            bill.ip=string_Ip;
+            NSString *str1 = [[SerializationComplexEntities sharedSerializer] serializeObjectWithChildObjectsAndComplexArray:bill childSimpleClasses:[[NSArray alloc] initWithObjects:[WorkItem class],nil] childSimpleClassInArray:[[NSArray alloc] initWithObjects:[WorkItem class],nil]];
+            
+            
+            NSLog(@"%@",str1);
+            
+            NSString *str_jiami=[SurveyRunTimeData hexStringFromString:str1];
+            sqHttpSer = [[RegistrationAndLoginAndFindHttpService alloc]init];
+            sqHttpSer.strUrl = ZongHeJiaoFei_c1_05;
+            sqHttpSer.delegate = self;
+            sqHttpSer.requestDict = [NSDictionary dictionaryWithObjectsAndKeys:str_jiami,@"para", nil];
+            [sqHttpSer beginQuery];
+            
+        }
+        
+        
+    }];
+}
+
+
+- (void)didReceieveSuccess:(NSInteger)tag{
+    NSLog(@"综合缴费:%@",sqHttpSer.responDict);
+    NSString *str_tishi=[sqHttpSer.responDict objectForKey:@"ecode"];
+    int intb = [str_tishi intValue];
+    if (intb==1000)
+    {
+        
+        //                NSArray *responArr = [NSArray arrayWithArray:sqHttpSer.responDict[@"info"]];
+        //                [newsArr addObjectsFromArray:responArr];
+        NSString *sss=[sqHttpSer.responDict objectForKey:@"url"];
+        NSLog(@"&&&&&&&&&&&&&&&:%lu",(unsigned long)sss.length);
+        //NSString * url=[NSString stringWithFormat:@"%@",sss];
+        //NSString * url=[NSString stringWithUTF8String:sss];
+        NSString *url =[sss stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        SheQuFuWu_Title=@"缴费";
+        Payment_url=url;
+        Pay_ViewController *subViewVCtr = [[Pay_ViewController alloc]init];
+        [self presentViewController:subViewVCtr animated:NO completion:nil];
+    }
+
+}
+
+- (void)didReceieveFail:(NSInteger)tag{
     
 }
+
+/*
+ *支付服务协议跳转
+ */
+- (void)pushToXieyiVC{
+    SheQuFuWu_Title=@"支付服务协议";
+    Payment_url=@"http://www.xiaolianshequ.cn/download/treaty.html";
+    Pay_ViewController *subViewVCtr = [[Pay_ViewController alloc]init];
+    [self presentViewController:subViewVCtr animated:NO completion:nil];
+}
+
+
+
+//checkBox 点击事件
+- (void)didSelectedCheckBox:(QCheckBox *)checkbox checked:(BOOL)checked
+{
+    
+    if (checked==0)
+    {
+        jiaofeiBtn.userInteractionEnabled=YES;
+    }
+    else
+    {
+        jiaofeiBtn.userInteractionEnabled=NO;
+        
+    }
+}
+
 
 /*
 // Override to support conditional editing of the table view.
