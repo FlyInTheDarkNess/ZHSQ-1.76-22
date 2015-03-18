@@ -117,6 +117,8 @@
 #define SheQuHuDong_m10_09   @"http://115.28.149.27:8090/V3.10/WebUI/api/serverApi/m10_09.ashx"       //删除帖子
 #define SheQuFuWu_m3_10      @"http://115.28.149.27:8090/V3.10/WebUI/api/serverApi/m3_10.ashx"        //删除商家回复
 #define QieHuanXiaoQu_m24_06      @"http://115.28.149.27:8090/V3.10/WebUI/api/serverApi/m24_06.ashx"        //切换地址
+ #define BaoLiao_m45_01       @"http://115.28.149.27:8090/V3.10/WebUI/api/serverApi/m45_01.ashx"       //新版缴费列表主键
+ #define BaoLiao_m45_02       @"http://115.28.149.27:8090/V3.10/WebUI/api/serverApi/m45_02.ashx"       //新版缴费列表内容
 
 */
 
@@ -236,6 +238,9 @@
 #define TuanGou_m40_13       @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m40_13.ashx"       //团购商品提交
 #define BaoLiao_m44_08       @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m44_08.ashx"       //我得爆料主键id
 #define BaoLiao_m44_03       @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m44_03.ashx"       //我得爆料信息
+#define BaoLiao_m45_01       @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m45_01.ashx"       //新版缴费列表主键
+#define BaoLiao_m45_02       @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m45_02.ashx"       //新版缴费列表内容
+
 #define QieHuanXiaoQu_m24_06      @"http://114.215.147.74:8088/V3.10/WebUI/api/serverApi/m24_06.ashx"        //切换地址
  
 @interface URL : NSObject

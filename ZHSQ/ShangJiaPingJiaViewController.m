@@ -102,6 +102,11 @@ extern NSString *UserName;
 {
     [textview resignFirstResponder];
 }
+
+
+/*
+ 点击完成，上传资料
+ */
 -(void)tijiao
 {
     @try

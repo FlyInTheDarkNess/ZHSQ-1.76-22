@@ -976,9 +976,6 @@ extern NSString *Title_label;
             {
                 arr_infoa=[[NSMutableArray array]init];
                 arr_infoa=[rootDic objectForKey:@"info"];
-                
-                NSMutableArray *type_id_arr=[[NSMutableArray alloc]init];
-                NSMutableArray *article_id_arr=[[NSMutableArray alloc]init];
                 arr_count=[[NSMutableArray alloc]init];
                 
                 
@@ -992,7 +989,7 @@ extern NSString *Title_label;
                 NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
                 NSString *path=[paths objectAtIndex:0];
                 NSLog(@"path = %@",path);
-                NSString *name = [NSString stringWithFormat:@"messageCountArr.plist"];
+                NSString *name = [NSString stringWithFormat:@"%@-%@-%@.plist",str_area,str_community,xiaoquIDString];
                 NSString *filename=[path stringByAppendingPathComponent:name];
                 NSMutableArray *messageCountArr = [NSMutableArray array];
                 plistDic = [[NSMutableDictionary alloc]initWithContentsOfFile:filename];

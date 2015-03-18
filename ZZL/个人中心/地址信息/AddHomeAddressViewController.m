@@ -17,6 +17,7 @@
 #import "BaoCunXinXi.h"
 #import "URL.h"
 #import "JiaMiJieMi.h"
+#import "denglu.h"
 extern NSString *Session;
 extern NSString *rowString;
 extern NSString *xiaoquIDString;
@@ -25,6 +26,11 @@ extern NSString *str_zhuzhi;
 extern NSString *area_id;
 extern int CommunitySelectionSource;
 extern int IsFiirst;
+extern NSString *string_Password;
+extern NSString *string_Account;
+extern NSString *Address_id;
+extern NSString *charge_mode;
+extern NSString *community_id;
 
 @interface AddHomeAddressViewController ()
 {
@@ -418,7 +424,17 @@ extern int IsFiirst;
             [SurveyRunTimeData sharedInstance].quarter_id = uesrDict[@"quarter_id"];
             [SurveyRunTimeData sharedInstance].area_id = uesrDict[@"area_id"];
             
+            Address_id=[uesrDict objectForKey:@"address_id"];
+            charge_mode=[uesrDict objectForKey:@"charge_mode"];
+
             
+            xiaoquIDString=[uesrDict objectForKey:@"quarter_id"];
+            xiaoquming=[uesrDict objectForKey:@"quarter_name"];
+            community_id=[uesrDict objectForKey:@"community_id"];
+            area_id=[uesrDict objectForKey:@"area_id"];
+            NSString *aaa=[NSString stringWithFormat:@"%@%@%@%@",[uesrDict objectForKey:@"quarter_name"],[uesrDict objectForKey:@"building_name"],[uesrDict objectForKey:@"unit_name"],[uesrDict objectForKey:@"room_name"]];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:aaa forKey:@"dizhixinxi"];
             
             [[NSUserDefaults standardUserDefaults] setObject:uesrDict[@"community_id"] forKey:@"community_id"];
             
@@ -427,19 +443,20 @@ extern int IsFiirst;
             xiaoquIDString = uesrDict[@"quarter_id"];
             
             
+            
             DengLuHouZhuYeViewController *zhuye=[[DengLuHouZhuYeViewController alloc]init];
             [self presentViewController:zhuye animated:NO completion:nil];
             
         }
             break;
         case 4:{
+            [newsArr removeAllObjects];
             NSString *a=sqHttpSer.responDict[@"ecode"];
             int intb = [a intValue];
             
             if (intb==3007)
             {
                 [SVProgressHUD showErrorWithStatus:@"没有查找到数据" duration:1.5];
-                
                 return ;
                 
             }
@@ -535,8 +552,21 @@ extern int IsFiirst;
             NSString *aaa=[NSString stringWithFormat:@"%@%@%@%@",label1.text,label3.text,label5.text,label7.text];
             [userDefaults setObject:aaa forKey:@"dizhixinxi"];
             
-            DengLuHouZhuYeViewController *zhuye=[[DengLuHouZhuYeViewController alloc]init];
-            [self presentViewController:zhuye animated:NO completion:nil];
+            denglu*customer =[[denglu alloc]init];
+            
+            NSString *mima=[MyMD5 md5:string_Password];
+            customer.password =mima;
+            
+            customer.username=string_Account;
+            NSString *str1 = [[SerializationComplexEntities sharedSerializer] serializeObjectWithChildObjectsAndComplexArray:customer childSimpleClasses:[[NSArray alloc] initWithObjects:[WorkItem class],nil] childSimpleClassInArray:[[NSArray alloc] initWithObjects:[WorkItem class],nil]];
+            NSString *str_jiami=[SurveyRunTimeData hexStringFromString:str1];
+            sqHttpSer = [[PersonCenterHttpService  alloc]init];
+            sqHttpSer.strUrl = YongHuBangDingXinXi_m1_17;
+            sqHttpSer.delegate = self;
+            sqHttpSer.requestDict = [NSDictionary dictionaryWithObjectsAndKeys:str_jiami,@"para", nil];
+            [sqHttpSer beginQuery];
+//            DengLuHouZhuYeViewController *zhuye=[[DengLuHouZhuYeViewController alloc]init];
+//            [self presentViewController:zhuye animated:NO completion:nil];
             
             
         }
