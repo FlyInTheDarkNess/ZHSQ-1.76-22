@@ -55,12 +55,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+/*
+ 切换地址
+ */
 - (IBAction)qiehuan:(id)sender
 {
     SwitchAddressViewController *qiehuan=[[SwitchAddressViewController alloc]init];
     [self presentViewController:qiehuan animated:NO completion:nil];
 }
 
+/*
+ 添加地址
+ */
 - (IBAction)tianjia:(id)sender
 {
 //    ZhuZhiXinXiViewController *xinxi=[[ZhuZhiXinXiViewController alloc]init];

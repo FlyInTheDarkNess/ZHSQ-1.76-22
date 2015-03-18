@@ -133,7 +133,7 @@ extern int CommunitySelectionSource;
     
     zidongdenglu=[[UIButton alloc]initWithFrame:CGRectMake(20, 175, 20, 20)];
     [zidongdenglu addTarget:self action:@selector(zhidongdenglu) forControlEvents:UIControlEventTouchUpInside];
-    [zidongdenglu setImage:[UIImage imageNamed:@"checknull.png"] forState:UIControlStateNormal];
+    [zidongdenglu setImage:[UIImage imageNamed:@"checno.png"] forState:UIControlStateNormal];
     NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
     NSString *myString = [userDefaultes stringForKey:@"zidong"];
     if (myString.length==0)
@@ -147,11 +147,11 @@ extern int CommunitySelectionSource;
     {
         if ([myString isEqualToString:@"yes"])
     {
-    [zidongdenglu setImage:[UIImage imageNamed:@"checknull.png"] forState:UIControlStateNormal];
+    [zidongdenglu setImage:[UIImage imageNamed:@"checno.png"] forState:UIControlStateNormal];
     }
     else if ([myString isEqualToString:@"no"])
     {
-    [zidongdenglu setImage:[UIImage imageNamed:@"checkc.png"] forState:UIControlStateNormal];
+    [zidongdenglu setImage:[UIImage imageNamed:@"chec.png"] forState:UIControlStateNormal];
         
     }
     }
@@ -229,7 +229,7 @@ extern int CommunitySelectionSource;
         str_zidongdenglu=@"no";
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:str_zidongdenglu forKey:@"zidong"];
-        [zidongdenglu setImage:[UIImage imageNamed:@"checkc.png"] forState:UIControlStateNormal];
+        [zidongdenglu setImage:[UIImage imageNamed:@"chec.png"] forState:UIControlStateNormal];
         y=YES;
     }
     if ([myString isEqualToString:@"no"])
@@ -241,7 +241,7 @@ extern int CommunitySelectionSource;
         [userDefaults setObject:zidongdenglu_zhanghao forKey:@"denglu_zhanghao"];
         [userDefaults setObject:zidongdenglu_mima forKey:@"denglu_mima"];
         [userDefaults setObject:str_zidongdenglu forKey:@"zidong"];
-        [zidongdenglu setImage:[UIImage imageNamed:@"checknull.png"] forState:UIControlStateNormal];
+        [zidongdenglu setImage:[UIImage imageNamed:@"checno.png"] forState:UIControlStateNormal];
         y=NO;
         
     }

@@ -36,7 +36,7 @@
     
     Btn_tuisong=[[UIButton alloc]initWithFrame:CGRectMake(260, 135, 30, 30)];
     [Btn_tuisong addTarget:self action:@selector(kaiqituisong) forControlEvents:UIControlEventTouchUpInside];
-    [Btn_tuisong setImage:[UIImage imageNamed:@"checknull.png"] forState:UIControlStateNormal];
+    [Btn_tuisong setImage:[UIImage imageNamed:@"checno.png"] forState:UIControlStateNormal];
     NSUserDefaults *userDefaultes = [NSUserDefaults standardUserDefaults];
     NSString *myString = [userDefaultes stringForKey:@"qiyongtuisong"];
     if (myString.length==0)
@@ -50,12 +50,12 @@
     {
         if ([myString isEqualToString:@"yes"])
         {
-            [Btn_tuisong setImage:[UIImage imageNamed:@"checkc.png"] forState:UIControlStateNormal];
+            [Btn_tuisong setImage:[UIImage imageNamed:@"chec.png"] forState:UIControlStateNormal];
 
         }
         else if ([myString isEqualToString:@"no"])
         {
-            [Btn_tuisong setImage:[UIImage imageNamed:@"checknull.png"] forState:UIControlStateNormal];
+            [Btn_tuisong setImage:[UIImage imageNamed:@"checno.png"] forState:UIControlStateNormal];
             
         }
     }
@@ -70,7 +70,7 @@
         str_tuisong=@"no";
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:str_tuisong forKey:@"qiyongtuisong"];
-        [Btn_tuisong setImage:[UIImage imageNamed:@"checkc.png"] forState:UIControlStateNormal];
+        [Btn_tuisong setImage:[UIImage imageNamed:@"chec.png"] forState:UIControlStateNormal];
         NSLog(@"启用推送");
     }
     if ([myString isEqualToString:@"no"])
@@ -78,7 +78,7 @@
         str_tuisong=@"yes";
         NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
         [userDefaults setObject:str_tuisong forKey:@"qiyongtuisong"];
-        [Btn_tuisong setImage:[UIImage imageNamed:@"checknull.png"] forState:UIControlStateNormal];
+        [Btn_tuisong setImage:[UIImage imageNamed:@"checno.png"] forState:UIControlStateNormal];
         NSLog(@"关闭推送");
 
         

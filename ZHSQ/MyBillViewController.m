@@ -352,7 +352,7 @@ extern NSString *charge_mode;
 //        NSDictionary *dic = [NSDictionary dictionaryWithDictionary:newsArr[indexPath.row]];
 //        if (y==YES)
 //        {
-//            [seckillBtn setBackgroundImage:[UIImage imageNamed:@"checknull.png"] forState:UIControlStateNormal];
+//            [seckillBtn setBackgroundImage:[UIImage imageNamed:@"checno.png"] forState:UIControlStateNormal];
 //            
 //            if (JinE>0)
 //            {
@@ -365,7 +365,7 @@ extern NSString *charge_mode;
 //        }
 //        if (y==NO)
 //        {
-//            [seckillBtn setBackgroundImage:[UIImage imageNamed:@"checkc.png"] forState:UIControlStateNormal];
+//            [seckillBtn setBackgroundImage:[UIImage imageNamed:@"chec.png"] forState:UIControlStateNormal];
 //            JinE=JinE+[[dic objectForKey:@"money_sum"] floatValue];
 //            total_label.text=[NSString stringWithFormat:@"金额(元): %0.2f",JinE];
 //            y=YES;

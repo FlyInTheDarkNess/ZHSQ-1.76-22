@@ -702,10 +702,18 @@ extern NSString *Title_label;
         arr_strlistOfSectionFive=[NSArray arrayWithObjects:@"系统设置",@"意见反馈", @"关于我们",@"应用二维码",nil];
         //arr_HeaderTitle=[NSArray arrayWithObjects:@"绑定信息",@"笑脸币",@"动态",@"银行卡与账单",@"系统设置", nil];
         
-        tableview=[[UITableView alloc]initWithFrame:CGRectMake(10, 125, Width-20, view_wode.frame.size.height-125)];
+        
+        /*
+         设置tableview
+         */
+        //*********************************
+        tableview=[[UITableView alloc]initWithFrame:CGRectMake(10, 125, Width-20, view_wode.frame.size.height-150)];
+        tableview.bounces = YES;
+        tableview.backgroundColor = [UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
         tableview.delegate=self;
         tableview.dataSource=self;
         [view_wode addSubview:tableview];
+        //*********************************
         
         
           /*
