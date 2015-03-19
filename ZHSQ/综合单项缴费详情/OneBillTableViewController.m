@@ -34,38 +34,16 @@ extern NSString *charge_mode;
 
 @implementation OneBillTableViewController
 @synthesize detailDic;
-@synthesize billType;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backBtn"] style:UIBarButtonItemStyleBordered target:self action:@selector(backToList)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = [UIColor whiteColor];
     
-    switch (billType) {
-        //水费
-        case 1:
-            itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"本次抄表日期",@"上次水表数",@"本次水表数",@"用水量",@"单价",@"水费",@"优惠金额",@"应缴金额"];
-            itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"peroid_end",@"water_num_start",@"water_num_end",@"watervolume",@"price",@"money1",@"money2",@"money_sum"];
-            break;
-            //物业费
-        case 2:
-            itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"建筑面积",@"单价",@"缴费期间",@"物业费",@"优惠金额",@"应缴金额"];
-            itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"price",@"缴费期间",@"money1",@"money2",@"money_sum"];
-            break;
-            //暖气费
-        case 3:
-            itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"建筑面积",@"单价",@"缴费期间",@"暖气费",@"优惠金额",@"应缴金额"];
-            itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"price",@"缴费期间",@"money1",@"money2",@"money_sum"];
-            break;
-            //停车费
-        case 4:
-            itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"车位信息",@"车牌号",@"缴费期间",@"水费",@"优惠金额",@"应缴金额"];
-            itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"car_site",@"car_no",@"缴费期间",@"money1",@"money2",@"money_sum"];
-            break;
-            
-        default:
-            break;
-    }
+    itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"建筑面积",@"缴费期间",@"基础金额",@"费用介绍",@"优惠金额",@"应缴金额",@"费用介绍2"];
+    itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"缴费期间",@"money1",@"detail",@"money2",@"money_sum",@"应缴金额 = 物业费 - 优惠金额"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -96,10 +74,12 @@ extern NSString *charge_mode;
      NSString *str = [NSString stringWithFormat:@"row:%d",indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:str];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:str];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:str];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.detailTextLabel.numberOfLines = 0;
+    cell.textLabel.font = [UIFont systemFontOfSize:14];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
     NSString *itemTitle = [NSString stringWithFormat:@"%@:",itemTitleArr[indexPath.row]];
     if ([itemTitle isEqualToString:@"客户地址:"]) {
         cell.textLabel.text = @"客户地址:";
@@ -107,6 +87,16 @@ extern NSString *charge_mode;
     }else if([itemTitle isEqualToString:@"缴费期间:"]){
         cell.textLabel.text = @"缴费期间:";
         cell.detailTextLabel.text = [NSString stringWithFormat:@"%@-%@",detailDic[@"period_start"],detailDic[@"peroid_end"]];
+    }else if([itemTitle isEqualToString:@"费用介绍:"]){
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"      %@",detailDic[@"detail"]];
+        cell.textLabel.font = [UIFont systemFontOfSize:10];
+        cell.textLabel.textColor = [UIColor redColor];
+    }else if([itemTitle isEqualToString:@"费用介绍2:"]){
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"      %@",itemDetailArr[indexPath.row]];
+        cell.textLabel.font = [UIFont systemFontOfSize:10];
+        cell.textLabel.textColor = [UIColor redColor];
     }else{
         cell.textLabel.text = itemTitle;
         NSString *detailKey = [NSString stringWithFormat:@"%@",itemDetailArr[indexPath.row]];
@@ -119,6 +109,19 @@ extern NSString *charge_mode;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSString *itemTitle = [NSString stringWithFormat:@"%@:",itemTitleArr[indexPath.row]];
+    if([itemTitle isEqualToString:@"费用介绍:"]){
+        return 15;
+    }else if([itemTitle isEqualToString:@"费用介绍2:"]){
+        
+        return 15;
+    }else if([itemTitle isEqualToString:@"基础金额:"]){
+        
+        return 20;
+    }else if([itemTitle isEqualToString:@"应缴金额2:"]){
+        
+        return 20;
+    }
     return 30;
 }
 
@@ -128,7 +131,10 @@ extern NSString *charge_mode;
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FooterId];
         NSString *pay_status = [NSString stringWithFormat:@"%@",detailDic[@"pay_status"]];
-        if ([pay_status isEqualToString:@"0"]) {
+        /*
+         判断当前账单是否为已付费账单或者捆绑账单
+         */
+        if ([pay_status isEqualToString:@"0"]&&[charge_mode integerValue]==0) {
             QCheckBox *_check1 = [[QCheckBox alloc] initWithDelegate:self];
             _check1.frame = CGRectMake(20, 0, 60, 40);
             [_check1 setTitle:@"同意" forState:UIControlStateNormal];

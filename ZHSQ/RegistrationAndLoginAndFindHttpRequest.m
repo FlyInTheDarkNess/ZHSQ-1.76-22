@@ -45,6 +45,7 @@
     if(!error)
     {
         
+        
         self.result = data;
         //  注册接口
         if ([self.urlStr_ isEqualToString:ZhuCe_m1_02])
@@ -135,6 +136,16 @@
         else if ([self.urlStr_ isEqualToString:ZongHeJiaoFei_c1_05])
         {
             self.errorCode = 18;
+        }
+        //缴费（综合缴费)统一接口
+        else if ([self.urlStr_ isEqualToString:JiaoFei_m45_01])
+        {
+            self.errorCode = 19;
+        }
+        //缴费（综合缴费）统一接口
+        else if ([self.urlStr_ isEqualToString:JiaoFei_m45_02])
+        {
+            self.errorCode = 20;
         }
 //        //取得ip地址
 //        else if ([self.urlStr_ isEqualToString:ipAddress_m1_01])

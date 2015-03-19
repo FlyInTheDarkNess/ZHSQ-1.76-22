@@ -168,16 +168,21 @@ extern NSString *charge_mode;
     NSString *str1;
     if ([str_Status isEqualToString:@"weijiaofei"])
     {
-        str1=[NSString stringWithFormat:@"{\"session\":%@,\"type\":\"2\",\"flag\":\"2\",\"date_start\":\"\",\"date_end\":\"\",\"address_id\":\"%@\"}",Session,Address_id];
+        str1=[NSString stringWithFormat:@"{\"session\":%@,\"flag\":\"2\",\"date_start\":\"\",\"date_end\":\"\",\"address_id\":\"%@\"}",Session,Address_id];
     }
     if ([str_Status isEqualToString:@"yijiaofei"])
     {
-        str1=[NSString stringWithFormat:@"{\"session\":%@,\"type\":\"2\",\"flag\":\"1\",\"date_start\":\"\",\"date_end\":\"\",\"address_id\":\"%@\"}",Session,Address_id];
+        str1=[NSString stringWithFormat:@"{\"session\":%@,\"flag\":\"1\",\"date_start\":\"\",\"date_end\":\"\",\"address_id\":\"%@\"}",Session,Address_id];
     }
     
     NSString *str_jiami=[SurveyRunTimeData hexStringFromString:str1];
     sqHttpSer = [[RegistrationAndLoginAndFindHttpService alloc]init];
-    sqHttpSer.strUrl = KuaiJieJiaoFeiZhuJian_m30_01;
+    //sqHttpSer.strUrl = KuaiJieJiaoFeiZhuJian_m30_01;
+    /*
+     修改时间 3.19
+     使用3.11统一缴费接口
+     */
+    sqHttpSer.strUrl = JiaoFei_m45_01;
     sqHttpSer.delegate = self;
     sqHttpSer.requestDict = [NSDictionary dictionaryWithObjectsAndKeys:str_jiami,@"para", nil];
     [sqHttpSer beginQuery];
@@ -194,10 +199,15 @@ extern NSString *charge_mode;
     str_Status=@"weijiaofei";
     [newsArr removeAllObjects];
     [Type_Arr removeAllObjects];
-    NSString *str1=[NSString stringWithFormat:@"{\"session\":%@,\"type\":\"2\",\"flag\":\"2\",\"date_start\":\"\",\"date_end\":\"\",\"address_id\":\"%@\"}",Session,Address_id];
+    NSString *str1=[NSString stringWithFormat:@"{\"session\":%@,\"flag\":\"2\",\"date_start\":\"\",\"date_end\":\"\",\"address_id\":\"%@\"}",Session,Address_id];
     NSString *str_jiami=[SurveyRunTimeData hexStringFromString:str1];
     sqHttpSer = [[RegistrationAndLoginAndFindHttpService alloc]init];
-    sqHttpSer.strUrl = KuaiJieJiaoFeiZhuJian_m30_01;
+    
+    //sqHttpSer.strUrl = KuaiJieJiaoFeiZhuJian_m30_01;
+    /*
+     使用3.11统一缴费接口
+     */
+    sqHttpSer.strUrl = JiaoFei_m45_01;
     sqHttpSer.delegate = self;
     sqHttpSer.requestDict = [NSDictionary dictionaryWithObjectsAndKeys:str_jiami,@"para", nil];
     [sqHttpSer beginQuery];
@@ -216,10 +226,16 @@ extern NSString *charge_mode;
     [Type_Arr removeAllObjects];
   //  NSString *str1=[NSString stringWithFormat:@"{\"session\":%@,\"type\":\"2\",\"flag\":\"1\",\"date_start\":\"\",\"date_end\":\"\",\"address_id\":\"%@\"}",Session,Address_id];
 
-    NSString *str1=[NSString stringWithFormat:@"{\"session\":%@,\"type\":\"2\",\"flag\":\"1\",\"date_start\":\"\",\"date_end\":\"\",\"address_id\":\"%@\"}",Session,Address_id];
+    NSString *str1=[NSString stringWithFormat:@"{\"session\":%@,\"flag\":\"1\",\"date_start\":\"\",\"date_end\":\"\",\"address_id\":\"%@\"}",Session,Address_id];
     NSString *str_jiami=[SurveyRunTimeData hexStringFromString:str1];
     sqHttpSer = [[RegistrationAndLoginAndFindHttpService alloc]init];
-    sqHttpSer.strUrl = KuaiJieJiaoFeiZhuJian_m30_01;
+    //sqHttpSer.strUrl = KuaiJieJiaoFeiZhuJian_m30_01;
+    /*
+     修改时间 3.19
+     使用3.11统一缴费接口
+     */
+    NSLog(@"%@",str1);
+    sqHttpSer.strUrl = JiaoFei_m45_01;
     sqHttpSer.delegate = self;
     sqHttpSer.requestDict = [NSDictionary dictionaryWithObjectsAndKeys:str_jiami,@"para", nil];
     [sqHttpSer beginQuery];
@@ -241,26 +257,27 @@ extern NSString *charge_mode;
     }
     cell.backgroundColor=[UIColor colorWithRed:239/255.0 green:239/255.0 blue:239/255.0 alpha:0.73];
     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:newsArr[indexPath.row]];
-   
+    NSLog(@"%@",dic);
     UILabel *zhongleiLab = (UILabel *)[cell.contentView viewWithTag:1];
-    NSString *strr=Type_Arr[indexPath.row];
-    NSLog(@"%@",Type_Arr);
-    if ([strr isEqualToString:@"1"])
-    {
-         zhongleiLab.text =@"水费";
-    }
-    if ([strr isEqualToString:@"2"])
-    {
-         zhongleiLab.text =@"物业费";
-    }
-    if ([strr isEqualToString:@"3"])
-    {
-         zhongleiLab.text =@"暖气费";
-    }
-    if ([strr isEqualToString:@"4"])
-    {
-         zhongleiLab.text =@"停车管理费";
-    }
+    zhongleiLab.text = [NSString stringWithFormat:@"%@",dic[@"type_name"]];
+//    NSString *strr=Type_Arr[indexPath.row];
+//    NSLog(@"%@",Type_Arr);
+//    if ([strr isEqualToString:@"1"])
+//    {
+//         zhongleiLab.text =@"水费";
+//    }
+//    if ([strr isEqualToString:@"2"])
+//    {
+//         zhongleiLab.text =@"物业费";
+//    }
+//    if ([strr isEqualToString:@"3"])
+//    {
+//         zhongleiLab.text =@"暖气费";
+//    }
+//    if ([strr isEqualToString:@"4"])
+//    {
+//         zhongleiLab.text =@"停车管理费";
+//    }
    
     
     UILabel *bianhaoLab = (UILabel *)[cell.contentView viewWithTag:2];
@@ -302,7 +319,10 @@ extern NSString *charge_mode;
      判断账单收费是否捆绑付款
      */
     if ([charge_mode isEqualToString:@"1"]) {
-        [self.view makeToast:@""];
+        /*
+         ？？？无法分离的账单应该怎样提示
+         */
+//        [self.view makeToast:@"当前收费项目暂未" duration:<#(CGFloat)#> position:<#(id)#>];
         return;
     }
     NSDictionary *oneOrder = newsArr[btn.indexPath];
@@ -329,28 +349,9 @@ extern NSString *charge_mode;
     
     OneBillTableViewController *oneBillVC = [[OneBillTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
     NSDictionary *dic = [NSDictionary dictionaryWithDictionary:newsArr[indexPath.row]];
-    NSString *strr=Type_Arr[indexPath.row];
-    NSLog(@"%@",Type_Arr);
-    if ([strr isEqualToString:@"1"])
-    {
-        oneBillVC.title = @"(水费)账单详情";
-        oneBillVC.billType = 1;
-    }
-    if ([strr isEqualToString:@"2"])
-    {
-        oneBillVC.title =@"(物业费)账单详情";
-        oneBillVC.billType = 2;
-    }
-    if ([strr isEqualToString:@"3"])
-    {
-        oneBillVC.title =@"(暖气费)账单详情";
-        oneBillVC.billType = 3;
-    }
-    if ([strr isEqualToString:@"4"])
-    {
-        oneBillVC.title =@"(停车管理费)账单详情";
-        oneBillVC.billType = 4;
-    }
+    
+    NSString *strr=[NSString stringWithFormat:@"(%@)详情",dic[@"type_name"]];
+    oneBillVC.title = strr;
     oneBillVC.detailDic = dic;
     UINavigationController *Nav = [[UINavigationController alloc]initWithRootViewController:oneBillVC];
     [self presentViewController:Nav animated:YES completion:nil];
@@ -846,13 +847,18 @@ extern NSString *charge_mode;
                 [self presentViewController:subViewVCtr animated:NO completion:nil];
                 
             }
+            else if(intb == 5000){
+                UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"该物业公司尚未开通账户" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+                [alert show];
+                break;
+            }
             
             if (newsArr.count==0)
             {
                 [MyBliiTableview headerEndRefreshing];
                 [MyBliiTableview footerEndRefreshing];
                 [SVProgressHUD showErrorWithStatus:@"没有查找到数据" duration:1];
-                return;
+                break;
                 
             }
             [MyBliiTableview reloadData];
@@ -867,6 +873,75 @@ extern NSString *charge_mode;
             total_label.text=[NSString stringWithFormat:@"金额(元): %0.2f",JinE];
             }
             break;
+            
+            
+            //统一缴费账单主键列表
+        case 19:{
+            //缴费账单主键
+            NSLog(@"主键id:%@      %@",sqHttpSer.responDict,PayStatus);
+            NSString *str_tishi=[sqHttpSer.responDict objectForKey:@"ecode"];
+            int intb = [str_tishi intValue];
+            if (intb==1000)
+            {
+                startIndex=0;
+                idList = [NSArray arrayWithArray:sqHttpSer.responDict[@"id_list"]];
+                NSString *str1=[NSString stringWithFormat:@"{\"id_list\":%@}",[self getFromArr:idList withNumber:idList.count]];
+                NSString *str_jiami=[SurveyRunTimeData hexStringFromString:str1];
+                sqHttpSer = [[RegistrationAndLoginAndFindHttpService alloc]init];
+                sqHttpSer.strUrl = JiaoFei_m45_02;
+                sqHttpSer.delegate = self;
+                sqHttpSer.requestDict = [NSDictionary dictionaryWithObjectsAndKeys:str_jiami,@"para", nil];
+                [sqHttpSer beginQuery];
+            }
+            else if(intb == 3007){
+                [newsArr removeAllObjects];
+                [MyBliiTableview headerEndRefreshing];
+                [MyBliiTableview footerEndRefreshing];
+                [MyBliiTableview reloadData];
+                [SVProgressHUD showErrorWithStatus:@"没有查找到数据" duration:1];
+                return;
+            }
+        }
+            break;
+            
+            
+            //统一综合缴费账单内容
+        case 20:{
+            //缴费账单-停车费
+            NSLog(@"我的停车费:%@",sqHttpSer.responDict);
+            [newsArr removeAllObjects];
+            NSString *str_tishi=[sqHttpSer.responDict objectForKey:@"ecode"];
+            int intb = [str_tishi intValue];
+            if (intb==1000)
+            {
+                
+                NSArray *responArr = [NSArray arrayWithArray:sqHttpSer.responDict[@"info"]];
+                [newsArr addObjectsFromArray:responArr];
+            }
+            
+            if (newsArr.count==0)
+            {
+                [SVProgressHUD showErrorWithStatus:@"没有查找到数据" duration:1];
+                return;
+            }
+            [MyBliiTableview headerEndRefreshing];
+            [MyBliiTableview footerEndRefreshing];
+            [MyBliiTableview reloadData];
+            float sum=0;
+            for (int j=0; j<newsArr.count; j++)
+            {
+                NSString *jine=[newsArr[j] objectForKey:@"money_sum"];
+                float J=[jine intValue];
+                sum=sum+J;
+            }
+            JinE=sum;
+            
+            total_label.text=[NSString stringWithFormat:@"金额(元): %0.2f",JinE];
+            
+        }
+            break;
+
+
        
         default:
             break;

@@ -100,6 +100,14 @@
             self.responDict = httpRequest.result;
             [self.delegate didReceieveSuccess:18];
             break;
+        case 19:
+            self.responDict = httpRequest.result;
+            [self.delegate didReceieveSuccess:19];
+            break;
+        case 20:
+            self.responDict = httpRequest.result;
+            [self.delegate didReceieveSuccess:20];
+            break;
 //        case 19:
 //            self.responDict = httpRequest.result;
 //            [self.delegate didReceieveSuccess:19];

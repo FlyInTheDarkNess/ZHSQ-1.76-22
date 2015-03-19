@@ -14,13 +14,5 @@
  账单信息
  */
 @property (nonatomic,strong) NSDictionary *detailDic;
-/*
- 账单类型
- 1 水费
- 2 物业费
- 3 暖气费
- 4 停车费
- */
-@property (nonatomic,assign) NSInteger billType;
 
 @end

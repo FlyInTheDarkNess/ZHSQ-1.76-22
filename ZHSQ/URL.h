@@ -136,6 +136,9 @@
 #define GongJiJin_m1_04         @"http://114.215.147.74:8088/V3.11/WebUI/api/serverApi/m31_01.ashx"       //公积金
 #define SheQuXuanZe_m24_02      @"http://114.215.147.74:8088/V3.11/WebUI/api/serverApi/m24_02.ashx"       //社区选择
 #define ChengShiXuanZe_m24_01   @"http://114.215.147.74:8088/V3.11/WebUI/api/serverApi/m24_01.ashx"       //城市选择
+//修改
+/*
+ */
 #define KuaiJieJiaoFeiZhuJian_m30_01 @"http://114.215.147.74:8088/V3.11/WebUI/api/serverApi/m30_01.ashx"  //快捷缴费主键
 #define WuYeFei_m30_02          @"http://114.215.147.74:8088/V3.11/WebUI/api/serverApi/m30_02.ashx"       //物业费
 #define ShuiFei_m30_03          @"http://114.215.147.74:8088/V3.11/WebUI/api/serverApi/m30_03.ashx"       //水费

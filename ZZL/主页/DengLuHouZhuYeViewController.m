@@ -927,8 +927,6 @@ extern NSString *Title_label;
         [alert show];
         return;
     }
-
-
 }
 -(void)AddCommunityPreferentialMessageDate
 {
@@ -1080,6 +1078,11 @@ extern NSString *Title_label;
                                         count_label.backgroundColor=[UIColor clearColor];
                                         count_label.textColor=[UIColor clearColor];
                                         
+                                    }
+                                    else if([tiaoshu integerValue]>9)
+                                    {   count_label.text = @"9+";
+                                        count_label.backgroundColor=[UIColor redColor];
+                                        count_label.textColor=[UIColor whiteColor];
                                     }
                                     else
                                     {
