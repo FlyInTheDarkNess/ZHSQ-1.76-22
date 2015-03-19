@@ -1530,12 +1530,15 @@ extern NSString *Title_label;
      修改时间 15.3.12
      修改内容 NSUserDefaults存储造成程序卡死，现修改为plist存储
      */
-
+    
     //**************************************
+    NSString *str_area = [SurveyRunTimeData sharedInstance].area_id;
+    
+    NSString *str_community=[[NSUserDefaults standardUserDefaults] stringForKey: @"community_id"];
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *path=[paths objectAtIndex:0];
     NSLog(@"path = %@",path);
-    NSString *name = [NSString stringWithFormat:@"messageCountArr.plist"];
+    NSString *name = [NSString stringWithFormat:@"%@-%@-%@.plist",str_area,str_community,xiaoquIDString];
     NSString *filename=[path stringByAppendingPathComponent:name];
     NSMutableArray *messageCountArr = [NSMutableArray array];
     plistDic = [[NSMutableDictionary alloc]initWithContentsOfFile:filename];

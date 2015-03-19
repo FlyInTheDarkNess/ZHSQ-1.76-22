@@ -291,8 +291,20 @@ extern NSString *charge_mode;
     return cell;
     
 }
+
+
+/*
+ 选择收费项
+ */
 -(void)xuanzhe:(AXHButton *)btn
 {
+    /*
+     判断账单收费是否捆绑付款
+     */
+    if ([charge_mode isEqualToString:@"1"]) {
+        [self.view makeToast:@""];
+        return;
+    }
     NSDictionary *oneOrder = newsArr[btn.indexPath];
     if ([JFArr indexOfObject:oneOrder]==NSNotFound) {
         [JFArr addObject:oneOrder];
