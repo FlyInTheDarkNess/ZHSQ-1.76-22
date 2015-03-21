@@ -701,8 +701,6 @@
 		D5134FB81AB92E7500E904A5 /* AddressMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5134FB61AB92E7500E904A5 /* AddressMessageViewController.m */; };
 		D5134FB91AB92E7500E904A5 /* AddressMessageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5134FB71AB92E7500E904A5 /* AddressMessageViewController.xib */; };
 		D5134FC41AB92F1500E904A5 /* AddHomeAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5134FBB1AB92F1500E904A5 /* AddHomeAddressViewController.m */; };
-		D5134FC51AB92F1500E904A5 /* QieHuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5134FBD1AB92F1500E904A5 /* QieHuanViewController.m */; };
-		D5134FC61AB92F1500E904A5 /* ShanChuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5134FBF1AB92F1500E904A5 /* ShanChuViewController.m */; };
 		D5134FC71AB92F1500E904A5 /* SwitchAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5134FC11AB92F1500E904A5 /* SwitchAddressViewController.m */; };
 		D5134FC81AB92F1500E904A5 /* ZhuZhiXinXiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5134FC31AB92F1500E904A5 /* ZhuZhiXinXiViewController.m */; };
 		D5146BDA1A3C79C3002055C7 /* CommunityDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5146BD91A3C79C3002055C7 /* CommunityDynamicViewController.m */; };
@@ -871,6 +869,8 @@
 		D54D57021A3D7DF900A65EE9 /* p003_wo_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = D54D56FC1A3D7DF900A65EE9 /* p003_wo_unchecked.png */; };
 		D54D57031A3D7DF900A65EE9 /* p004_zhoubian_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = D54D56FD1A3D7DF900A65EE9 /* p004_zhoubian_unchecked.png */; };
 		D54D57041A3D7DF900A65EE9 /* p005_xiaoqu_unchecked.png in Resources */ = {isa = PBXBuildFile; fileRef = D54D56FE1A3D7DF900A65EE9 /* p005_xiaoqu_unchecked.png */; };
+		D5580E0A1ABAEA5100E77CE9 /* ShanChuViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5580E091ABAEA5100E77CE9 /* ShanChuViewTableViewController.m */; };
+		D5580E0D1ABAEAE600E77CE9 /* QieHuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5580E0C1ABAEAE600E77CE9 /* QieHuanViewController.m */; };
 		D56085281980F8C900EA878E /* fuwushangjiaxiangxi.m in Sources */ = {isa = PBXBuildFile; fileRef = D56085271980F8C900EA878E /* fuwushangjiaxiangxi.m */; };
 		D56409501AA95015005086E8 /* shouyeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D564094F1AA95015005086E8 /* shouyeViewController.m */; };
 		D56B5E6D1AB16E7F00DA58CF /* MyBillTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D56B5E6B1AB16E7F00DA58CF /* MyBillTableViewCell.m */; };
@@ -2019,10 +2019,6 @@
 		D5134FB71AB92E7500E904A5 /* AddressMessageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressMessageViewController.xib; sourceTree = "<group>"; };
 		D5134FBA1AB92F1500E904A5 /* AddHomeAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddHomeAddressViewController.h; sourceTree = "<group>"; };
 		D5134FBB1AB92F1500E904A5 /* AddHomeAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddHomeAddressViewController.m; sourceTree = "<group>"; };
-		D5134FBC1AB92F1500E904A5 /* QieHuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QieHuanViewController.h; sourceTree = "<group>"; };
-		D5134FBD1AB92F1500E904A5 /* QieHuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QieHuanViewController.m; sourceTree = "<group>"; };
-		D5134FBE1AB92F1500E904A5 /* ShanChuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShanChuViewController.h; sourceTree = "<group>"; };
-		D5134FBF1AB92F1500E904A5 /* ShanChuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShanChuViewController.m; sourceTree = "<group>"; };
 		D5134FC01AB92F1500E904A5 /* SwitchAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchAddressViewController.h; sourceTree = "<group>"; };
 		D5134FC11AB92F1500E904A5 /* SwitchAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchAddressViewController.m; sourceTree = "<group>"; };
 		D5134FC21AB92F1500E904A5 /* ZhuZhiXinXiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZhuZhiXinXiViewController.h; sourceTree = "<group>"; };
@@ -2264,6 +2260,10 @@
 		D54D56FC1A3D7DF900A65EE9 /* p003_wo_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p003_wo_unchecked.png; sourceTree = "<group>"; };
 		D54D56FD1A3D7DF900A65EE9 /* p004_zhoubian_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p004_zhoubian_unchecked.png; sourceTree = "<group>"; };
 		D54D56FE1A3D7DF900A65EE9 /* p005_xiaoqu_unchecked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = p005_xiaoqu_unchecked.png; sourceTree = "<group>"; };
+		D5580E081ABAEA5100E77CE9 /* ShanChuViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShanChuViewTableViewController.h; sourceTree = "<group>"; };
+		D5580E091ABAEA5100E77CE9 /* ShanChuViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShanChuViewTableViewController.m; sourceTree = "<group>"; };
+		D5580E0B1ABAEAE600E77CE9 /* QieHuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QieHuanViewController.h; sourceTree = "<group>"; };
+		D5580E0C1ABAEAE600E77CE9 /* QieHuanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QieHuanViewController.m; sourceTree = "<group>"; };
 		D56085261980F8C900EA878E /* fuwushangjiaxiangxi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fuwushangjiaxiangxi.h; sourceTree = "<group>"; };
 		D56085271980F8C900EA878E /* fuwushangjiaxiangxi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = fuwushangjiaxiangxi.m; sourceTree = "<group>"; };
 		D564094F1AA95015005086E8 /* shouyeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shouyeViewController.m; sourceTree = "<group>"; };
@@ -4679,10 +4679,10 @@
 				D5134FB71AB92E7500E904A5 /* AddressMessageViewController.xib */,
 				D5134FBA1AB92F1500E904A5 /* AddHomeAddressViewController.h */,
 				D5134FBB1AB92F1500E904A5 /* AddHomeAddressViewController.m */,
-				D5134FBC1AB92F1500E904A5 /* QieHuanViewController.h */,
-				D5134FBD1AB92F1500E904A5 /* QieHuanViewController.m */,
-				D5134FBE1AB92F1500E904A5 /* ShanChuViewController.h */,
-				D5134FBF1AB92F1500E904A5 /* ShanChuViewController.m */,
+				D5580E0B1ABAEAE600E77CE9 /* QieHuanViewController.h */,
+				D5580E0C1ABAEAE600E77CE9 /* QieHuanViewController.m */,
+				D5580E081ABAEA5100E77CE9 /* ShanChuViewTableViewController.h */,
+				D5580E091ABAEA5100E77CE9 /* ShanChuViewTableViewController.m */,
 				D5134FC01AB92F1500E904A5 /* SwitchAddressViewController.h */,
 				D5134FC11AB92F1500E904A5 /* SwitchAddressViewController.m */,
 				D5134FC21AB92F1500E904A5 /* ZhuZhiXinXiViewController.h */,
@@ -6001,7 +6001,6 @@
 				D535ADE81A84A8300076644E /* AddBankCardViewController.m in Sources */,
 				D50B62C41A159550008C833C /* WoDeShuiFei_WeiJiaoViewController.m in Sources */,
 				D50570DB1A1F03060006E448 /* ChangTuKeYunXiangQing_ShiNeiViewController.m in Sources */,
-				D5134FC61AB92F1500E904A5 /* ShanChuViewController.m in Sources */,
 				D50B62E11A15DBA2008C833C /* ShiPinYaoPinXiangQingViewController.m in Sources */,
 				D52A2DA61A6F9CD1008A4014 /* WeiJiaoPropertyCostsViewController.m in Sources */,
 				C4C27B9B19385511009D1C9B /* SBJsonUTF8Stream.m in Sources */,
@@ -6013,6 +6012,7 @@
 				D5A93BBC1986469A0069FCB4 /* SheQuHuDong.m in Sources */,
 				C4C27BBC193855B5009D1C9B /* WorkItem.m in Sources */,
 				D509D79D1998BF57001B76F5 /* ZhengFuGongGaoViewController.m in Sources */,
+				D5580E0A1ABAEA5100E77CE9 /* ShanChuViewTableViewController.m in Sources */,
 				D510057A1A354D8900EA620A /* SDWebImageDownloader.m in Sources */,
 				D54266DF1977C12700886D6C /* CalendarDateUtil.m in Sources */,
 				D512EC4E1A4A5F8C009564E4 /* ZHMyMessageHttpRequest.m in Sources */,
@@ -6213,6 +6213,7 @@
 				D510057D1A354D8900EA620A /* SDWebImagePrefetcher.m in Sources */,
 				D5A7DC7619D3E7BF0017163C /* WeiZhangXiangQingViewController.m in Sources */,
 				D52C91A31A5A594B008D15F6 /* FoodMedicineViewController.m in Sources */,
+				D5580E0D1ABAEAE600E77CE9 /* QieHuanViewController.m in Sources */,
 				C4C27B9519385511009D1C9B /* SBJsonStreamParserAdapter.m in Sources */,
 				D510057F1A354D8900EA620A /* UIImage+GIF.m in Sources */,
 				C4A42DD9194F009C00B16F5F /* SheQuTongZhiXiangQingViewController.m in Sources */,
@@ -6252,7 +6253,6 @@
 				D51005851A354D8900EA620A /* UIView+WebCacheOperation.m in Sources */,
 				7BD25CA31AB560D600BF0A6B /* LPLabel.m in Sources */,
 				D54877091A5BCB02008841F8 /* CommunityNoticeViewController.m in Sources */,
-				D5134FC51AB92F1500E904A5 /* QieHuanViewController.m in Sources */,
 				7BD25D5C1AB560D700BF0A6B /* WUEmoticonsKeyboardToolsView.m in Sources */,
 				D56409501AA95015005086E8 /* shouyeViewController.m in Sources */,
 				7BD25D711AB560D700BF0A6B /* AXHBXXViewController.m in Sources */,
@@ -6439,7 +6439,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: han qingli (7RN693M829)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -6490,7 +6490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: BEIJING ORIENTAL HAPPY FACE TECHNOLOGY CO., LTD";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

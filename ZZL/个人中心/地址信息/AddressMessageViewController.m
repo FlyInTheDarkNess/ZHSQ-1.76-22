@@ -7,11 +7,16 @@
 //
 
 #import "AddressMessageViewController.h"
-#import "ShanChuViewController.h"
 #import "ZhuZhiXinXiViewController.h"
 #import "QieHuanViewController.h"
 #import "SwitchAddressViewController.h"
 #import "AddHomeAddressViewController.h"
+#import "ShanChuViewTableViewController.h"
+#import "shouyeViewController.h"
+
+extern NSString *community_id;
+extern NSString *xiaoquIDString;
+extern NSString *area_id;
 @interface AddressMessageViewController ()
 
 @end
@@ -45,7 +50,8 @@
     Btn_QieHuan.layer.cornerRadius = 5;
     Btn_QieHuan.layer.borderWidth = 0.5;
     Btn_QieHuan.layer.borderColor=[[UIColor grayColor] CGColor];
-
+    
+    
     
 }
 
@@ -63,6 +69,11 @@
     SwitchAddressViewController *qiehuan=[[SwitchAddressViewController alloc]init];
     [self presentViewController:qiehuan animated:NO completion:nil];
 }
+- (IBAction)deleteAddress:(id)sender {
+    ShanChuViewTableViewController *SCVC = [[ShanChuViewTableViewController alloc]init];
+    UINavigationController *Nav = [[UINavigationController alloc]initWithRootViewController:SCVC];
+    [self presentViewController:Nav animated:YES completion:nil];
+}
 
 /*
  添加地址
@@ -79,7 +90,12 @@
 
 - (IBAction)fanhui:(id)sender
 {
-    [self dismissViewControllerAnimated:NO completion:nil];
+    if (community_id.length<1&&xiaoquIDString.length<1&&area_id.length < 1) {
+        shouyeViewController *shouye = [[shouyeViewController alloc]init];
+        [self presentViewController:shouye animated:YES completion:nil];
+    }else{
+         [self dismissViewControllerAnimated:NO completion:nil];
+    }
 }
 //IOS 6.0 以上禁止横屏
 - (BOOL)shouldAutorotate

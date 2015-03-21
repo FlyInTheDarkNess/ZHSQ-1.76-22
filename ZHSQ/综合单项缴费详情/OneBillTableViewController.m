@@ -43,7 +43,7 @@ extern NSString *charge_mode;
     self.tableView.backgroundColor = [UIColor whiteColor];
     
     itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"建筑面积",@"缴费期间",@"基础金额",@"费用介绍",@"优惠金额",@"应缴金额",@"费用介绍2"];
-    itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"缴费期间",@"money1",@"detail",@"money2",@"money_sum",@"应缴金额 = 物业费 - 优惠金额"];
+    itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"缴费期间",@"money1",@"detail",@"money2",@"money_sum",@"应缴金额 = 基础金额 - 优惠金额"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -287,6 +287,18 @@ extern NSString *charge_mode;
         jiaofeiBtn.userInteractionEnabled=NO;
         
     }
+}
+
+
+//IOS 6.0 以上禁止横屏
+- (BOOL)shouldAutorotate
+{
+    return NO;
+}
+//IOS 6.0 以下禁止横屏
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return NO;
 }
 
 

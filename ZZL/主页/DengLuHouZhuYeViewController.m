@@ -973,8 +973,24 @@ extern NSString *Title_label;
             if (intString==1000)
             {
                 arr_infoa=[[NSMutableArray array]init];
-                arr_infoa=[rootDic objectForKey:@"info"];
+                NSArray *infoArr=[rootDic objectForKey:@"info"];
+                [arr_infoa addObjectsFromArray:infoArr];
                 arr_count=[[NSMutableArray alloc]init];
+                NSLog(@"首页资讯：arr_infoa:%@",arr_infoa);
+//                for (int num; num<infoArr.count; num++) {
+//                    NSDictionary *dic = infoArr[num];
+//                    NSString *date = [NSString stringWithFormat:@"%@",dic[@"article_date"]];
+//                    if (date.length < 1) {
+//                        [arr_infoa removeObject:dic];
+//                    }
+//
+//                }
+                for (NSDictionary *dic in infoArr) {
+                    NSString *date = [NSString stringWithFormat:@"%@",dic[@"article_date"]];
+                    if (date.length < 1) {
+                        [arr_infoa removeObject:dic];
+                    }
+                }
                 
                 
                 /*
@@ -1014,7 +1030,7 @@ extern NSString *Title_label;
                 NSMutableArray *mCountArr=[[NSUserDefaults standardUserDefaults] mutableArrayValueForKey: @"mCountArr"];
                 
                  */
-                if (messageCountArr.count < arr_infoa.count) {
+                if (messageCountArr.count != arr_infoa.count) {
                     messageCountArr = [NSMutableArray array];
                     
 
@@ -1073,6 +1089,8 @@ extern NSString *Title_label;
                                     count_label.textAlignment=NSTextAlignmentCenter;
                                     count_label.layer.cornerRadius=10;
                                     count_label.layer.masksToBounds = YES;
+                                    
+                                    count_label.text=tiaoshu;
                                     if ([tiaoshu isEqualToString:@"0"])
                                     {
                                         count_label.backgroundColor=[UIColor clearColor];
@@ -1092,7 +1110,6 @@ extern NSString *Title_label;
                                     //                                    count_label.backgroundColor=[UIColor redColor];
                                     //                                    count_label.textColor=[UIColor blackColor];
                                     
-                                    count_label.text=tiaoshu;
                                     [scrollview_xiaoqu addSubview:count_label];
                                 }
                                 
@@ -1161,7 +1178,7 @@ extern NSString *Title_label;
                     label_AddCommunityPreferentialMessageDateTime.font=[UIFont systemFontOfSize:12];
                     [scrollview_xiaoqu addSubview:label_AddCommunityPreferentialMessageDateTime];
                     //内容
-                    label_AddCommunityPreferentialMessageDateContent=[[UILabel alloc]initWithFrame:CGRectMake(31+(self.view.frame.size.width-23)/4, 216+70*k, 2.8*(self.view.frame.size.width-23)/4, 35)];
+                    label_AddCommunityPreferentialMessageDateContent=[[UILabel alloc]initWithFrame:CGRectMake(31+(self.view.frame.size.width-23)/4, 216+70*k, 2.8*(self.view.frame.size.width-23)/4-30, 35)];
                     label_AddCommunityPreferentialMessageDateContent.numberOfLines=2;
                     label_AddCommunityPreferentialMessageDateContent.textColor=[UIColor grayColor];
                     label_AddCommunityPreferentialMessageDateContent.text=[arr_infoa[k] objectForKey:@"title"];
@@ -1864,6 +1881,8 @@ extern NSString *Title_label;
                          [Btn_ForgotPassword removeFromSuperview];
                          [label_NickName removeFromSuperview];
                          [label_Member removeFromSuperview];
+                         
+                         
                         [self showWithCustomView:@"已退出登录状态"];
                      }
                  }

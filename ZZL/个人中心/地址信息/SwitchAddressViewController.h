@@ -24,5 +24,7 @@
     NSMutableArray *arr_addressidentify;
 }
 
+@property (nonatomic,assign) NSInteger type;// 0 切换 1 删除
+
 
 @end

@@ -119,7 +119,7 @@
 #define QieHuanXiaoQu_m24_06      @"http://115.28.149.27:8090/V3.11/WebUI/api/serverApi/m24_06.ashx"        //切换地址
  #define BaoLiao_m45_01       @"http://115.28.149.27:8090/V3.11/WebUI/api/serverApi/m45_01.ashx"       //新版缴费列表主键
  #define BaoLiao_m45_02       @"http://115.28.149.27:8090/V3.11/WebUI/api/serverApi/m45_02.ashx"       //新版缴费列表内容
-
+#define ShanChuZhuZhiXinXi_m24_13 @"http://115.28.149.27:8090/V3.11/WebUI/api/serverApi/m24_13.ashx"     //切换住址
 */
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -245,6 +245,7 @@
 #define JiaoFei_m45_02       @"http://114.215.147.74:8088/V3.11/WebUI/api/serverApi/m45_02.ashx"       //新版缴费列表内容
 
 #define QieHuanXiaoQu_m24_06      @"http://114.215.147.74:8088/V3.11/WebUI/api/serverApi/m24_06.ashx"        //切换地址
+#define ShanChuZhuZhiXinXi_m24_13 @"http://114.215.147.74:8088/V3.11/WebUI/api/serverApi/m24_13.ashx"     //切换住址
  
 @interface URL : NSObject
 

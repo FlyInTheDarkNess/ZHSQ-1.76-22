@@ -67,6 +67,11 @@
             self.responDict = httpRequest.result;
             [self.delegate didReceieveSuccess:10];
             break;
+        case 11:
+            self.responDict = httpRequest.result;
+            [self.delegate didReceieveSuccess:11];
+            break;
+
 
         default:
             [self.delegate didReceieveFail:400];

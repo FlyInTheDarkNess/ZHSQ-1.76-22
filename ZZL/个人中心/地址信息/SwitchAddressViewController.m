@@ -15,6 +15,8 @@
 #import "QieHuanZhuZhiXinXi.h"
 #import "ZhuXiao.h"
 #import "denglu.h"
+
+
 extern NSString *Session;
 extern NSString *LoginNum;
 extern NSString *LoginPass;
@@ -24,9 +26,11 @@ extern NSString *xiaoquming;
 extern NSString *string_Account;
 extern NSString *string_Password;
 extern NSString *area_id;
+
 /*
  添加全局属性
  */
+
 extern NSString *Address_id;
 extern NSString *charge_mode;
 @interface SwitchAddressViewController ()
@@ -41,12 +45,15 @@ extern NSString *charge_mode;
     //NSMutableArray *_fakeData;
     int startIndex;
     
+    NSMutableArray *deleteArr;//删除列表
+    
     BOOL isUp;
 }
 
 @end
 
 @implementation SwitchAddressViewController
+@synthesize type;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,6 +67,7 @@ extern NSString *charge_mode;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    deleteArr = [NSMutableArray array];
     // Do any additional setup after loading the view.
     self.view.backgroundColor=[UIColor whiteColor];
     CGRect rect=[[UIScreen mainScreen]bounds];
@@ -70,7 +78,19 @@ extern NSString *charge_mode;
     image.backgroundColor=[UIColor colorWithRed:234/255.0 green:83/255.0 blue:87/255.0 alpha:1];
     [self.view addSubview:image];
     label=[[UILabel alloc]initWithFrame:CGRectMake(0, 20, 320, 40)];
-    label.text=@"切换小区";
+    switch (type) {
+        case 0:
+            label.text=@"切换地址";
+            break;
+        case 1:
+            label.text=@"删除地址";
+            break;
+            
+        default:
+            [[UIApplication sharedApplication].keyWindow makeToast:@"系统错误" duration:1.0f position:@"center"];
+            [self dismissViewControllerAnimated:NO completion:nil];
+            break;
+    }
     [label setFont:[UIFont fontWithName:@"Helvetica-Bold" size:18]];
     label.textAlignment=NSTextAlignmentCenter;
     label.textColor=[UIColor whiteColor];
@@ -158,44 +178,60 @@ extern NSString *charge_mode;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    switch (type) {
+            //切换小区地址
+        case 0:
+        {
+            /*
+             UITableViewCell *cell=[tableview cellForRowAtIndexPath:indexPath];
+             sss=cell.textLabel.text;
+             str_address_id=[newsArr[indexPath.row] objectForKey:@"address_id"];
+             */
+            /*
+             修改人 赵忠良
+             修改时间 15.3.16 pm 1.44
+             修改原因 小区切换无效
+             */
+            //*******************
+            
+            UITableViewCell *cell=[tableview cellForRowAtIndexPath:indexPath];
+            sss=cell.textLabel.text;
+            NSDictionary *Dic=[newsArr objectAtIndex:indexPath.row];
+            Address_id=[Dic objectForKey:@"address_id"];
+            charge_mode=[Dic objectForKey:@"charge_mode"];
+            
+            
+            [SurveyRunTimeData sharedInstance].community_id = Dic[@"community_id"];
+            [SurveyRunTimeData sharedInstance].quarter_id = Dic[@"quarter_id"];
+            [SurveyRunTimeData sharedInstance].city_id =  Dic[@"city_id"];
+            [SurveyRunTimeData sharedInstance].area_id = Dic[@"area_id"];
+            
+            xiaoquIDString=[Dic objectForKey:@"quarter_id"];
+            xiaoquming=[Dic objectForKey:@"quarter_name"];
+            community_id=[Dic objectForKey:@"community_id"];
+            area_id=[Dic objectForKey:@"area_id"];
+            NSString *aaa=[NSString stringWithFormat:@"%@%@%@%@",[Dic objectForKey:@"quarter_name"],[Dic objectForKey:@"building_name"],[Dic objectForKey:@"unit_name"],[Dic objectForKey:@"room_name"]];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:aaa forKey:@"dizhixinxi"];
+            
+            str_address_id=[Dic objectForKey:@"address_id"];
+            [self tijiao];
+            //********************
+            
+        }
+            break;
+            
+        case 1:
+        {
+            
+        }
+            
+        default:
+            break;
+    }
 
 
-    /*
-    UITableViewCell *cell=[tableview cellForRowAtIndexPath:indexPath];
-    sss=cell.textLabel.text;
-    str_address_id=[newsArr[indexPath.row] objectForKey:@"address_id"];
-     */
-    /*
-     修改人 赵忠良
-     修改时间 15.3.16 pm 1.44
-     修改原因 小区切换无效
-     */
-    //*******************
-    UITableViewCell *cell=[tableview cellForRowAtIndexPath:indexPath];
-    sss=cell.textLabel.text;
-    NSDictionary *Dic=[newsArr objectAtIndex:indexPath.row];
-    Address_id=[Dic objectForKey:@"address_id"];
-    charge_mode=[Dic objectForKey:@"charge_mode"];
-    
-    
-    [SurveyRunTimeData sharedInstance].community_id = Dic[@"community_id"];
-    [SurveyRunTimeData sharedInstance].quarter_id = Dic[@"quarter_id"];
-    [SurveyRunTimeData sharedInstance].city_id =  Dic[@"city_id"];
-    [SurveyRunTimeData sharedInstance].area_id = Dic[@"area_id"];
-    
-    xiaoquIDString=[Dic objectForKey:@"quarter_id"];
-    xiaoquming=[Dic objectForKey:@"quarter_name"];
-    community_id=[Dic objectForKey:@"community_id"];
-    area_id=[Dic objectForKey:@"area_id"];
-    NSString *aaa=[NSString stringWithFormat:@"%@%@%@%@",[Dic objectForKey:@"quarter_name"],[Dic objectForKey:@"building_name"],[Dic objectForKey:@"unit_name"],[Dic objectForKey:@"room_name"]];
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    [userDefaults setObject:aaa forKey:@"dizhixinxi"];
-    
-    str_address_id=[Dic objectForKey:@"address_id"];
-    [self tijiao];
-    //********************
-    /*
+        /*
     
      */
 }

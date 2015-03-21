@@ -90,10 +90,15 @@
         {
             self.errorCode = 9;
         }
-        //  热推荐频道信息
+        //  切换住址信息
         else if ([self.urlStr_ isEqualToString:QieHuanZhuZhiXinXi_24_012])
         {
             self.errorCode = 10;
+        }
+        //  删除住址信息
+        else if ([self.urlStr_ isEqualToString:ShanChuZhuZhiXinXi_m24_13])
+        {
+            self.errorCode = 11;
         }
 
     }

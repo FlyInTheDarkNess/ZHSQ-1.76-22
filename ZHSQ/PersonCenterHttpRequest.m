@@ -176,6 +176,11 @@
         {
             self.errorCode = 26;
         }
+        //  删除地址信息
+        else if ([self.urlStr_ isEqualToString:ShanChuZhuZhiXinXi_m24_13])
+        {
+            self.errorCode = 27;
+        }
 
 
 

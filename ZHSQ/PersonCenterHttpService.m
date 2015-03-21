@@ -134,6 +134,10 @@
             self.responDict = httpRequest.result;
             [self.delegate didReceieveSuccess:26];
             break;
+        case 27:
+            self.responDict = httpRequest.result;
+            [self.delegate didReceieveSuccess:27];
+            break;
 
 
         default:

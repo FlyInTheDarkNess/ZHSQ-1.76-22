@@ -23,6 +23,7 @@
 #import "BaoCunXinXi.h"
 #import "URL.h"
 #import "JiaMiJieMi.h"
+
 extern NSString *Session;
 extern NSString *rowString;
 extern NSString *xiaoquIDString;
@@ -118,7 +119,7 @@ extern int IsFiirst;
     [self.view addSubview:wancheng];
     label_shuoming=[[UILabel alloc]initWithFrame:CGRectMake(20, 70, 280, 50)];
     label_shuoming.numberOfLines=3;
-    label_shuoming.text=@"     笑脸社区会严格保密你的小区、楼宇号、单元号、房间等信息，请放心填写。真实的信息会让您在物业缴费、小区通知等方面第一时间得到信息";
+    label_shuoming.text = @"     笑脸社区会严格保密你的小区、楼宇号、单元号、房间等信息，请放心填写。真实的信息会让您在物业缴费、小区通知等方面第一时间得到信息";
     label_shuoming.font=[UIFont systemFontOfSize:12];
     [self.view addSubview:label_shuoming];
     label_beijing=[[UILabel alloc]initWithFrame:CGRectMake(20, 140, 280, 280)];
@@ -138,6 +139,7 @@ extern int IsFiirst;
     btn_wodexiaoqu.layer.borderColor=[[UIColor grayColor] CGColor];
     [btn_wodexiaoqu addTarget:self action:@selector(wodexiaoqu) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn_wodexiaoqu];
+
     label1=[[UILabel alloc]initWithFrame:CGRectMake(23, 180, 200, 20)];
     
     label1.textColor=[UIColor blueColor];

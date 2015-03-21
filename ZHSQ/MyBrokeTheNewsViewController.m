@@ -216,25 +216,30 @@ extern NSString *Session;
     
     return cell;
 }
+
 -(void)shanchu:(AXHButton *)btn
 {
     NSLog(@"删除序列：%d",btn.tag);
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
     return arr_MyPosts.count;
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
     return cell.frame.size.height;
     
 }
+
 - (void)creatAttributedLabel:(NSString *)o_text Label:(OHAttributedLabel *)label
 {
     //3
@@ -291,6 +296,7 @@ extern NSString *Session;
     
     return NO;
 }
+
 #pragma mark DataDelegate
 -(void)didReceieveSuccess:(NSInteger)tag{
     switch (tag) {
@@ -359,11 +365,11 @@ extern NSString *Session;
             break;
     }
 }
+
 -(void)didReceieveFail:(NSInteger)tag{
     [tableview_MyPosts headerEndRefreshing];
     [tableview_MyPosts footerEndRefreshing];
    
-
 }
 
 -(NSString *)getFromArr:(NSArray *)arr withNumber:(int)num{
