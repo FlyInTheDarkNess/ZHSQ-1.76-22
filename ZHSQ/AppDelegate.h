@@ -72,6 +72,17 @@ NSDictionary *MyMessageDictionary;
 NSDictionary *PersonInformationDictionary;
 NSDictionary *YouHuiZiXunDic;
 NSDictionary *GroupBuyingDic;
+
+
+/*
+ 与赵贺无关
+ */
+
+UserInfo *user;
+
+
+
+
 @class shouyeViewController;
 @class wViewController;
 NSMutableArray *searchResults;

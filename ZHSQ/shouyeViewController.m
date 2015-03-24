@@ -29,6 +29,10 @@
 #import "URL.h"
 #import "JiaMiJieMi.h"
 #import "BangDingXinXi.h"
+
+
+
+
 extern NSString *Session;
 extern NSString *Card_id;
 extern NSString *email;
@@ -46,6 +50,8 @@ extern NSString *string_Password;
 extern NSString *Address_id;
 extern NSString *charge_mode;
 extern int CommunitySelectionSource;
+
+extern UserInfo *user;
 
 @interface shouyeViewController ()
 
@@ -216,6 +222,9 @@ extern int CommunitySelectionSource;
         return;
     }
 }
+
+
+//无语，自动登录
 -(void)zhidongdenglu
 {
     @try
@@ -260,12 +269,18 @@ extern int CommunitySelectionSource;
         return;
     }
 }
+
+
+
+
 -(void)Touristdenglu
 {
     CommunitySelectionSource=1;
     SheQuXuanZeViewController *xuanze=[[SheQuXuanZeViewController alloc]init];
     [self presentViewController:xuanze animated:YES completion:nil];
 }
+
+
 -(void)zhuce
 {
     ZhuCeViewController *viewcontroller=[[ZhuCeViewController alloc]init];
@@ -326,6 +341,7 @@ extern int CommunitySelectionSource;
                     [SurveyRunTimeData sharedInstance].password = mima;
                     
                     NSString *str1 = [[SerializationComplexEntities sharedSerializer] serializeObjectWithChildObjectsAndComplexArray:customer childSimpleClasses:[[NSArray alloc] initWithObjects:[WorkItem class],nil] childSimpleClassInArray:[[NSArray alloc] initWithObjects:[WorkItem class],nil]];
+                    NSLog(@"%@",str1);
                     NSString *str_jiami=[JiaMiJieMi hexStringFromString:str1];
                     NSString *str2=@"para=";
                     NSString *Str;
@@ -333,6 +349,7 @@ extern int CommunitySelectionSource;
                     
                     [HttpPostExecutor postExecuteWithUrlStr:YongHuBangDingXinXi_m1_17 Paramters:Str FinishCallbackBlock:^(NSString *result)
                      {
+                    
                          // 执行post请求完成后的逻辑
                          //NSLog(@"第二次:登录 %@", result);
                          if (result.length<=0)
@@ -348,6 +365,19 @@ extern int CommunitySelectionSource;
                          SBJsonParser *parser = [[SBJsonParser alloc] init];
                          NSError *error = nil;
                          NSDictionary *rootDic = [parser objectWithString:str_jiemi error:&error];
+                             
+                             /*
+                              修改时间 3.23 
+                              修改人 赵忠良
+                              修改内容 添加存储用户信息的全局变量
+                              */
+                             //**************************
+                             NSArray *person = [rootDic objectForKey:@"person_info"];
+                             NSArray *car_info = [rootDic objectForKey:@"car_info"];
+                             NSArray *jdh_info = [rootDic objectForKey:@"jdh_info"];
+                             NSArray *address_info = [rootDic objectForKey:@"address_info"];
+                             user = [[UserInfo alloc]initWithPersonArr:person CarArr:car_info JdhArr:jdh_info AddressArr:address_info Session:[rootDic objectForKey:@"session"]];
+                             //******************************
                          Session=[rootDic objectForKey:@"session"];
                          NSString *str_tishi=[rootDic objectForKey:@"ecode"];
                          int intb = [str_tishi intValue];

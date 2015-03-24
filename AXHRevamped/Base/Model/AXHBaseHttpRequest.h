@@ -18,6 +18,7 @@
 //请求的URL地址
 @property (nonatomic,strong) NSString *urlStr_;
 
+@property (nonatomic,strong) NSArray *arrImages;
 /**
  *@brief NewsNethelper 初始化方法
  *@discussion

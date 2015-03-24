@@ -181,6 +181,12 @@
         {
             self.errorCode = 27;
         }
+        //  删除地址信息
+        else if ([self.urlStr_ isEqualToString:ShanChuBaoLiao_m44_09])
+        {
+            self.errorCode = 28;
+        }
+
 
 
 

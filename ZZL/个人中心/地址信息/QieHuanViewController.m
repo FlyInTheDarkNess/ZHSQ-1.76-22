@@ -31,6 +31,8 @@ extern NSString *xiaoquming;
 extern NSString *string_Account;
 extern NSString *string_Password;
 
+extern UserInfo *user;
+
 @interface QieHuanViewController ()
 
 @end
@@ -326,6 +328,20 @@ extern NSString *string_Password;
              int intb = [str_tishi intValue];
              if (intb==1000)
              {
+                
+                 /*
+                  修改时间 3.23
+                  修改人 赵忠良
+                  修改内容 添加存储用户信息的全局变量
+                  */
+                 //**************************
+                 NSArray *person = [rootDic objectForKey:@"person_info"];
+                 NSArray *car_info = [rootDic objectForKey:@"car_info"];
+                 NSArray *jdh_info = [rootDic objectForKey:@"jdh_info"];
+                 NSArray *address_info = [rootDic objectForKey:@"address_info"];
+                 user = [[UserInfo alloc]initWithPersonArr:person CarArr:car_info JdhArr:jdh_info AddressArr:address_info Session:[rootDic objectForKey:@"session"]];
+                 //******************************
+
                  arr_info=[rootDic objectForKey:@"address_info"];
                  arr_addressidentify=[[NSMutableArray alloc]init];
                  for (int i=0; i<[arr_info count]; i++)

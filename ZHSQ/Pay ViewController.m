@@ -89,6 +89,22 @@ extern NSString *SheQuFuWu_Title;
     // Dispose of any resources that can be recreated.
 }
 
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+    NSLog(@"%@",request.URL.absoluteString);
+    if ([request.URL.absoluteString isEqualToString:@"kjkjzc://"])
+    {
+//        [self returnBackMethod];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您已缴费成功，请返回" delegate:self cancelButtonTitle:@"我知道了" otherButtonTitles:nil, nil];
+        [alert show];
+        return NO;
+        
+    }
+    
+    return YES;
+}
+
+
 /*
 #pragma mark - Navigation
 

@@ -29,6 +29,7 @@ extern NSString *area_id;
  */
 extern NSString *Address_id;
 extern NSString *charge_mode;
+extern UserInfo *user;
 @interface ShanChuViewTableViewController ()<HttpDataServiceDelegate>{
     NSMutableArray *arr_addressidentify;
     //接口内地址信息
@@ -279,6 +280,18 @@ extern NSString *charge_mode;
             {
                 [SVProgressHUD showSuccessWithStatus:@"更新成功" duration:1];
                 [addressList removeAllObjects];
+                /*
+                 修改时间 3.23
+                 修改人 赵忠良
+                 修改内容 添加存储用户信息的全局变量
+                 */
+                //**************************
+                NSArray *person = [sqHttpSer.requestDict objectForKey:@"person_info"];
+                NSArray *car_info = [sqHttpSer.requestDict objectForKey:@"car_info"];
+                NSArray *jdh_info = [sqHttpSer.requestDict objectForKey:@"jdh_info"];
+                NSArray *address_info = [sqHttpSer.requestDict objectForKey:@"address_info"];
+                user = [[UserInfo alloc]initWithPersonArr:person CarArr:car_info JdhArr:jdh_info AddressArr:address_info Session:[sqHttpSer.requestDict objectForKey:@"session"]];
+                //******************************
                 NSArray *arr=[sqHttpSer.responDict objectForKey:@"address_info"];
                 [addressList addObjectsFromArray:arr];
                 arr_addressidentify=[[NSMutableArray alloc]init];

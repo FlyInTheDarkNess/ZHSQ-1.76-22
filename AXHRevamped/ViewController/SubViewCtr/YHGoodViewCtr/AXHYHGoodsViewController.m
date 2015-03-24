@@ -250,8 +250,12 @@
                 [yhGoodsHttpSer beginQuery];
             }else if ([yhGoodsHttpSer.responDict[@"ecode"] integerValue] == 3007){
                 [SVProgressHUD showErrorWithStatus:@"没有查找到数据！" duration:1.5];
+                [_collectionView headerEndRefreshing];
+                [_collectionView footerEndRefreshing];
             }else{
                     [SVProgressHUD showErrorWithStatus:@"未知错误！" duration:1.5];
+                [_collectionView headerEndRefreshing];
+                [_collectionView footerEndRefreshing];
             }
         }
             break;

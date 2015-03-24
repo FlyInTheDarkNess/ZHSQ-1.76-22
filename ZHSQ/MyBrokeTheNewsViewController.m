@@ -9,6 +9,7 @@
 #import "MyBrokeTheNewsViewController.h"
 #import "PersonCenterHttpService.h"
 #import "AXHButton.h"
+#import "UIScrollView+MJRefresh.h"
 extern NSString *UserName;
 extern NSString *icon_path;
 extern NSString *Session;
@@ -74,9 +75,11 @@ extern NSString *Session;
     
     
     tableview_MyPosts=[[UITableView alloc]initWithFrame:CGRectMake(0, 60, 320, Hidth-60)];
+    tableview_MyPosts.tableFooterView = [[UIView alloc]init];
     tableview_MyPosts.delegate=self;
     tableview_MyPosts.dataSource=self;
     [self.view addSubview:tableview_MyPosts];
+    
     [tableview_MyPosts addHeaderWithTarget:self action:@selector(MyReplyDataInit)];
     [tableview_MyPosts addFooterWithTarget:self action:@selector(MyReplyAddData)];
     [tableview_MyPosts headerBeginRefreshing];
@@ -123,6 +126,7 @@ extern NSString *Session;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     CGFloat gao = 0.0;
     UIImageView *imageview_HeadPortraits=[[UIImageView alloc]init];
     imageview_HeadPortraits.frame=CGRectMake(10, 10, 60, 60);
@@ -133,7 +137,6 @@ extern NSString *Session;
     NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:icon_path]];
     if (data.length>0 && ![icon_path isEqualToString:@""] && ![icon_path isEqualToString:nil])
     {
-        
         [imageview_HeadPortraits setImageWithURL:[NSURL URLWithString:icon_path] placeholderImage:[UIImage imageNamed:@"setPerson"] options:SDWebImageRetryFailed usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     }
     else
@@ -169,7 +172,7 @@ extern NSString *Session;
     [CustomMethod drawImage:label1];
     UIView *view1 = [[UIView alloc] init];
     OHAttributedLabel *labelll = label1;
-    view1.frame = CGRectMake(10, 80+gao, self.view.frame.size.height-20, label2.frame.size.height);
+    view1.frame = CGRectMake(10, 80 + gao, self.view.frame.size.height - 20, label2.frame.size.height);
     view1.backgroundColor=[UIColor whiteColor];
     //gao=labelll.frame.size.width;
     labelll.textColor=[UIColor blueColor];
@@ -184,15 +187,30 @@ extern NSString *Session;
     label_time.text=[arr_MyPosts[indexPath.row] objectForKey:@"fnews_addtime"];
     [cell addSubview:label_time];
     
-    UIImageView *imageview_pic=[[UIImageView alloc]init];
-    imageview_pic.frame=CGRectMake(10,  gao+90+labelll.frame.size.height, 80, 50);
     NSArray *array=[arr_MyPosts[indexPath.row] objectForKey:@"detail_info"];
-    if (array.count>0)
-    {
-        [imageview_pic setImageWithURL:[NSURL URLWithString:[array[0] objectForKey:@"phone_thumbs_url"]] placeholderImage:[UIImage imageNamed:@"setPerson"]  options:SDWebImageRetryFailed usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    NSLog(@"%@",array);
+    for (int num = 0; num<array.count; num ++) {
+        if (num > 2) {
+            break;
+        }
+        UIImageView *imageview_pic=[[UIImageView alloc]initWithFrame:CGRectMake(10 + num * 90,  gao + 90 + labelll.frame.size.height , 80, 50)];
+        imageview_pic.contentMode = UIViewContentModeScaleAspectFill;
+        imageview_pic.clipsToBounds = YES;
+        [imageview_pic setImageWithURL:[NSURL URLWithString:[array[num] objectForKey:@"phone_thumbs_url"]] placeholderImage:[UIImage imageNamed:@"happyFace_placeholder@2x"]  options:SDWebImageRetryFailed usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
         [cell addSubview:imageview_pic];
-        
     }
+    
+    
+    
+
+//    UIImageView *imageview_pic=[[UIImageView alloc]init];
+//    imageview_pic.frame=CGRectMake(10,  gao + 90 + labelll.frame.size.height, 80, 50);
+//   
+//    if (array.count>0)
+//    {
+//        [imageview_pic setImageWithURL:[NSURL URLWithString:[array[0] objectForKey:@"phone_thumbs_url"]] placeholderImage:[UIImage imageNamed:@"setPerson"]  options:SDWebImageRetryFailed usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+//        [cell addSubview:imageview_pic];
+//    }
     
 //    UILabel *shanchu=[[UILabel alloc]initWithFrame:CGRectMake(self.view.frame.size.width-70, gao+140+labelll.frame.size.height, 60, 20)];
 //    shanchu.text=@"删除帖子";
@@ -220,6 +238,18 @@ extern NSString *Session;
 -(void)shanchu:(AXHButton *)btn
 {
     NSLog(@"删除序列：%d",btn.tag);
+    //NSLog(@"删除序列：%d",btn.tag);
+   NSString *tieziID=[arr_MyPosts[btn.tag] objectForKey:@"fnews_id"];
+    //NSLog(@"%@，%@",tieziID,arr_MyPosts);
+    
+    NSString *str1=[NSString stringWithFormat:@"{\"session\":%@,\"id_list\":[{\"id\":\"%@\"}]}",Session,tieziID];
+    NSString *str_jiami=[SurveyRunTimeData hexStringFromString:str1];
+    //NSLog(@"canshu :%@",str1);
+    sqHttpSer = [[PersonCenterHttpService alloc]init];
+    sqHttpSer.strUrl = ShanChuBaoLiao_m44_09;
+    sqHttpSer.delegate = self;
+    sqHttpSer.requestDict = [NSDictionary dictionaryWithObjectsAndKeys:str_jiami,@"para", nil];
+    [sqHttpSer beginQuery];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -359,6 +389,26 @@ extern NSString *Session;
             NSArray *responArr = [NSArray arrayWithArray:sqHttpSer.responDict[@"info"]];
             [arr_MyPosts addObjectsFromArray:responArr];
             [tableview_MyPosts reloadData];
+        }
+            break;
+        case 28:
+        {
+            NSLog(@"删除爆料:%@",sqHttpSer.responDict);
+            NSString *a=sqHttpSer.responDict[@"ecode"];
+            intb = [a intValue];
+            if (intb==4000)
+            {
+                [SVProgressHUD showErrorWithStatus:@"服务器内部错误" duration:1.5];
+                
+                return;
+                
+            }
+            if (intb==1000)
+            {
+                
+                [self MyReplyDataInit];
+            }
+            
         }
             break;
         default:

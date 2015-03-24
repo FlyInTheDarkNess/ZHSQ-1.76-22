@@ -19,4 +19,6 @@
     #import"UIViewController+CustomAppearance.h"
     #import"AXHHttpUrl.h"
     #import "Toast+UIView.h"
+    #import "UserInfo.h"
+
 #endif

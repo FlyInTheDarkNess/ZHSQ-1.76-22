@@ -148,8 +148,6 @@
     
     [self.navigationController.view addSubview:[self settingView]];
 }
-
-
 -(UIView *)settingView{
     if (!backView) {
         backView = [[UIView alloc]initWithFrame:self.navigationController.view.frame];

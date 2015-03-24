@@ -36,6 +36,13 @@ extern NSString *community_id;
 extern NSString *mobel_iphone;
 extern NSString *Address_id;
 extern NSString *charge_mode;
+
+/*
+ 个人信息存储
+ */
+extern UserInfo *user;
+
+
 //#import "MobClick.h"
 @implementation AppDelegate
 
@@ -135,9 +142,23 @@ extern NSString *charge_mode;
                  int intb = [str_tishi intValue];
                  if (intb==1000)
                  {
+                     /*
+                      修改时间 3.23
+                      修改人 赵忠良
+                      修改内容 添加存储用户信息的全局变量
+                      */
+                     //**************************
+                     NSArray *person = [PersonInformationDictionary objectForKey:@"person_info"];
+                     NSArray *car_info = [PersonInformationDictionary objectForKey:@"car_info"];
+                     NSArray *jdh_info = [PersonInformationDictionary objectForKey:@"jdh_info"];
+                     NSArray *address_info = [PersonInformationDictionary objectForKey:@"address_info"];
+                     user = [[UserInfo alloc]initWithPersonArr:person CarArr:car_info JdhArr:jdh_info AddressArr:address_info Session:[PersonInformationDictionary objectForKey:@"session"]];
+                     //******************************
+
+                     
                      NSString *nickname=[[[PersonInformationDictionary objectForKey:@"person_info"] objectAtIndex:0] objectForKey:@"nickname"];
                      UserName=nickname;
-               
+                     
                     [SurveyRunTimeData sharedInstance].session = [PersonInformationDictionary objectForKey:@"session"];
                      [SurveyRunTimeData sharedInstance].mobilePhone = PersonInformationDictionary[@"person_info"][0][@"mobile_phone"];
                      [SurveyRunTimeData sharedInstance].user_id = PersonInformationDictionary[@"person_info"][0][@"id"];

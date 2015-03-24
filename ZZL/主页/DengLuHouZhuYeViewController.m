@@ -36,6 +36,9 @@ extern NSString *agency_id;
 extern NSString *city_id;
 extern NSString *quarter_id;
 extern NSString *Title_label;
+extern UserInfo *user;
+
+
 @interface DengLuHouZhuYeViewController ()<HttpDataServiceDelegate,UIActionSheetDelegate>
 {
     //请求
@@ -164,21 +167,22 @@ extern NSString *Title_label;
     {
         KuaiJieJiaoFeiViewController *jiaofei=[[KuaiJieJiaoFeiViewController alloc]init];
         [self presentViewController:jiaofei animated:NO completion:nil];
-
     }
     else
     {
         [self Login];
-
     }
 
     
 }
+
 -(void)xiaoqubibei
+
 {
     XiaoQuBiBieViewController *bibie=[[XiaoQuBiBieViewController alloc]init];
     [self presentViewController:bibie animated:NO completion:nil];
 }
+
 -(void)viewWillAppear:(BOOL)animated
 {
     self.view.backgroundColor=[UIColor whiteColor];
@@ -196,7 +200,7 @@ extern NSString *Title_label;
     if (![Session isEqualToString:@""] && Session.length>0)
     {
         /*
-         //主页卡顿代码
+        //主页卡顿代码
         NSData * data = [NSData dataWithContentsOfURL:[NSURL URLWithString:icon_path]];
         if (data.length>0 && ![icon_path isEqualToString:@""] && ![icon_path isEqualToString:nil])
         {
@@ -416,6 +420,7 @@ extern NSString *Title_label;
         scrollview_zhoubian=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 100, Width, Hidth-100)];
         scrollview_zhoubian.delegate=self;
         scrollview_zhoubian.backgroundColor=[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
+
         scrollview_zhoubian.pagingEnabled = NO; //是否翻页
         scrollview_zhoubian.showsHorizontalScrollIndicator = NO;//水平方向的滚动指示
         scrollview_zhoubian.contentSize=CGSizeMake(scrollview_zhoubian.frame.size.width, 468);
@@ -726,7 +731,8 @@ extern NSString *Title_label;
 
         scrollview_xiaoqu=[[UIScrollView alloc]initWithFrame:CGRectMake(0, 100, Width, Hidth-100)];
         scrollview_xiaoqu.delegate=self;
-        scrollview_xiaoqu.backgroundColor=[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
+//        scrollview_xiaoqu.backgroundColor=[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:1];
+        scrollview_xiaoqu.backgroundColor = [UIColor whiteColor];
         scrollview_xiaoqu.pagingEnabled = NO; //是否翻页
         scrollview_xiaoqu.showsHorizontalScrollIndicator = NO;//水平方向的滚动指示
         scrollview_xiaoqu.contentSize=CGSizeMake(scrollview_xiaoqu.frame.size.width, 488);
@@ -1135,7 +1141,7 @@ extern NSString *Title_label;
                 {
                     Btn_xiaoqu_beijing=[[UIButton alloc]initWithFrame:CGRectMake(10, 196+70*k, self.view.frame.size.width- 20, 70)];
                     [Btn_xiaoqu_beijing setImage:[UIImage imageNamed:@"渐变1.png"] forState:UIControlStateNormal];
-                    //Btn_xiaoqu_beijing.tag=[[arr_infoa[k] objectForKey:@"article_type_id"] intValue];
+                     //Btn_xiaoqu_beijing.tag=[[arr_infoa[k] objectForKey:@"article_type_id"] intValue];
                     Btn_xiaoqu_beijing.tag=k;
                     
                     [Btn_xiaoqu_beijing setEnabled:YES];
@@ -1144,6 +1150,8 @@ extern NSString *Title_label;
                     
                     //图片
                     imageview_AddCommunityPreferentialMessageDate=[[UIImageView alloc]initWithFrame:CGRectMake(20, 201+70*k, (self.view.frame.size.width-23)/4, 60)];
+                    imageview_AddCommunityPreferentialMessageDate.clipsToBounds = YES;
+                    imageview_AddCommunityPreferentialMessageDate.contentMode = UIViewContentModeScaleAspectFill;
                     NSString *imageUrl=[[arr_infoa[k] objectForKey:@"pic"][0] objectForKey:@"thumbs_url"];
                     if (imageUrl.length>0)
                     {

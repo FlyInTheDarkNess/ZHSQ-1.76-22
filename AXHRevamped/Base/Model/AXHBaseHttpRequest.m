@@ -59,9 +59,23 @@
     if (dict_) {
         for (NSString *key in dict_) {
             if ([key isEqualToString:@"pictures"]) {
-                [postRequest addFile:dict_[key] forKey:@"pictures"];
+                self.arrImages = [NSArray arrayWithArray:dict_[@"pictures"]];
+                if ([self.arrImages count] >0) {
+                    for (int i = 0; i < [self.arrImages count]; i++) {
+                        [postRequest addData:[NSData dataWithContentsOfURL:[self.arrImages objectAtIndex:i]] withFileName:@"image.jpg" andContentType:@"image/jpeg" forKey:[NSString stringWithFormat:@"%d", i ]];
+                    }
+                }else{
+                     [postRequest addFile:dict_[key] forKey:@"pictures"];
+                }
             }else if ([key isEqualToString:@"mediafile"]) {
-                [postRequest addFile:dict_[key] forKey:@"mediafile"];
+                self.arrImages = [NSArray arrayWithArray:dict_[@"mediafile"]];
+                if ([self.arrImages count] >0) {
+                    for (int i = 0; i < [self.arrImages count]; i++) {
+                        [postRequest addData:[NSData dataWithContentsOfURL:[self.arrImages objectAtIndex:i]] withFileName:@"image.jpg" andContentType:@"image/jpeg" forKey:[NSString stringWithFormat:@"%d", i ]];
+                    }
+                }else{
+                    [postRequest addFile:dict_[key] forKey:@"mediafile"];
+                }
             }
             else{
                 [postRequest addPostValue:dict_[key] forKey:key];

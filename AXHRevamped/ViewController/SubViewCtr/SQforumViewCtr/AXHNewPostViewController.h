@@ -7,8 +7,12 @@
 //
 
 #import "AXHBaseViewController.h"
-//#import "ZYQAssetPickerController.h" ZYQAssetPickerControllerDelegate
+
 #import "SQForumHttpService.h"
+
+#import "CTAssetsPageViewController.h"
+#import "CTAssetsPickerController.h"
+
 typedef enum {
     //以下是枚举成员
     PostTypeDefault = 0,//新帖子
@@ -16,9 +20,10 @@ typedef enum {
     PostTypeNews,//报料
     PostTypeZXBack,//回复帖子
 }PostType;//枚举名称
-@interface AXHNewPostViewController : AXHBaseViewController<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface AXHNewPostViewController : AXHBaseViewController<UITextViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,CTAssetsPickerControllerDelegate>
+//UIPopoverControllerDelegate pad选图片调用
 
 @property (nonatomic,assign) PostType postType;
-
+@property (nonatomic, strong) NSMutableArray *assets;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil withType:(PostType)type withBackDict:(NSDictionary *)dict;
 @end

@@ -32,6 +32,8 @@ extern NSString *Address_id;
 extern NSString *charge_mode;
 extern NSString *community_id;
 
+extern UserInfo *user;
+
 @interface AddHomeAddressViewController ()
 {
     //主键ID
@@ -415,6 +417,19 @@ extern NSString *community_id;
                     break;
                 }
             }
+            
+            /*
+             修改时间 3.23
+             修改人 赵忠良
+             修改内容 添加存储用户信息的全局变量
+             */
+            //**************************
+            NSArray *person = [sqHttpSer.requestDict objectForKey:@"person_info"];
+            NSArray *car_info = [sqHttpSer.requestDict objectForKey:@"car_info"];
+            NSArray *jdh_info = [sqHttpSer.requestDict objectForKey:@"jdh_info"];
+            NSArray *address_info = [sqHttpSer.requestDict objectForKey:@"address_info"];
+            user = [[UserInfo alloc]initWithPersonArr:person CarArr:car_info JdhArr:jdh_info AddressArr:address_info Session:[sqHttpSer.requestDict objectForKey:@"session"]];
+            //******************************
             
             [SVProgressHUD showSuccessWithStatus:@"添加成功" duration:1];
             

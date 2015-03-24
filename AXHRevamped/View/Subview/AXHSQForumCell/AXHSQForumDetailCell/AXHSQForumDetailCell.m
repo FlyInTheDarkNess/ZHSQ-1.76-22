@@ -64,9 +64,7 @@ static AXHSQForumDetailCell *formCell;
         }else{
             nameLab.textColor = daytimeTextColor;
             detailLab.textColor = daytimeTextColor;
-            
         }
-        
         
         NSArray *arr;
         arr = [NSArray arrayWithArray:dict[@"images"]];
@@ -79,12 +77,14 @@ static AXHSQForumDetailCell *formCell;
         float picContentHeight = detailLab.frame.size.height + 65;
         for (int i = 0; i < imageArr.count; i++) {
            float imageHeight = 150;
-            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, detailLab.frame.origin.y + detailLab.frame.size.height, kViewwidth - 20, imageHeight)];
+            UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(10, picContentHeight, kViewwidth - 20, imageHeight)];
             
             [imageView setImageWithURL:[NSURL URLWithString:imageArr[i]]
                       placeholderImage:[UIImage imageNamed:kPLACEHOLDER_IMAGE]
                                options:SDWebImageRetryFailed | SDWebImageDelayPlaceholder
            usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            imageView.contentMode = UIViewContentModeScaleToFill;
+            imageView.backgroundColor = [UIColor clearColor];
             [formCell.contentView addSubview:imageView];
             imageView = nil;
             picContentHeight =  10 + imageHeight  + picContentHeight;
@@ -95,7 +95,6 @@ static AXHSQForumDetailCell *formCell;
             cellframe.size.height = picContentHeight;
         }else{
             cellframe.size.height = detailLab.frame.origin.y + detailLab.frame.size.height + 20;
-            
         }
    
         formCell.contentView.backgroundColor = [UIColor clearColor];
