@@ -24,6 +24,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setbook{
+    NSLog(@"添加3");
+}
 /*
 #pragma mark - Navigation
 
