@@ -2023,62 +2023,65 @@ extern UserInfo *user;
  {
 	[activityIndicator stopAnimating];
 	 NSString *str = request.responseString;
-    NSMutableDictionary *jsonoObj = [str JSONValue];
-    NSLog(@"天气信息 ：%@",jsonoObj);
-    NSMutableDictionary *jsonoSubObj = [jsonoObj objectForKey:@"weatherinfo"];
-    city = [[NSString alloc] initWithFormat:@"%@\n",[jsonoSubObj objectForKey:@"city"]];
-    
-    weather =[[NSString alloc] initWithFormat:@"%@\n",[jsonoSubObj objectForKey:@"weather"]];
-    
-    temperature1 =[[NSString alloc] initWithFormat:@"%@\n",[jsonoSubObj objectForKey:@"temp2"]];
-    temperature2=[[NSString alloc] initWithFormat:@"%@\n",[jsonoSubObj objectForKey:@"temp1"]];
-    NSDate *  senddate=[NSDate date];
-    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
-    [dateformatter setDateFormat:@"MM月dd日"];
-    NSString *locationString=[dateformatter stringFromDate:senddate];
-    
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDate *now;
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-    now=[NSDate date];
-    comps = [calendar components:unitFlags fromDate:now];
-    NSString*weekStr;
-    if([comps weekday]==1)
-    {
-        weekStr=@"星期天";
-    }else if([comps weekday]==2){
-        weekStr=@"星期一";
-        
-    }else if([comps weekday]==3){
-        weekStr=@"星期二";
-        
-    }else if([comps weekday]==4){
-        weekStr=@"星期三";
-        
-    }else if([comps weekday]==5){
-        weekStr=@"星期四";
-        
-    }else if([comps weekday]==6){
-        weekStr=@"星期五";
-        
-    }else {
-        weekStr=@"星期六";
-        
-    }
-    
-//    if ([weather isKindOfClass:[NSNull class]])
-//    {
-        citylabel.text = city;
-        weatherlabel.text = weather;
-        templabel.text=temperature1;
-        timelabel.text=[NSString stringWithFormat:@" ~ %@",temperature2];
-        Date_label.text =[NSString stringWithFormat:@"%@%@",locationString,weekStr];
-        
-//    }
-    
+     if (str.length > 0) {
+         NSMutableDictionary *jsonoObj = [str JSONValue];
+         NSLog(@"天气信息 ：%@",jsonoObj);
+         NSMutableDictionary *jsonoSubObj = [jsonoObj objectForKey:@"weatherinfo"];
+         city = [[NSString alloc] initWithFormat:@"%@\n",[jsonoSubObj objectForKey:@"city"]];
+         
+         weather =[[NSString alloc] initWithFormat:@"%@\n",[jsonoSubObj objectForKey:@"weather"]];
+         
+         temperature1 =[[NSString alloc] initWithFormat:@"%@\n",[jsonoSubObj objectForKey:@"temp2"]];
+         temperature2=[[NSString alloc] initWithFormat:@"%@\n",[jsonoSubObj objectForKey:@"temp1"]];
+         NSDate *  senddate=[NSDate date];
+         NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+         [dateformatter setDateFormat:@"MM月dd日"];
+         NSString *locationString=[dateformatter stringFromDate:senddate];
+         
+         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+         NSDate *now;
+         NSDateComponents *comps = [[NSDateComponents alloc] init];
+         NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+         NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+         now=[NSDate date];
+         comps = [calendar components:unitFlags fromDate:now];
+         NSString*weekStr;
+         if([comps weekday]==1)
+         {
+             weekStr=@"星期天";
+         }else if([comps weekday]==2){
+             weekStr=@"星期一";
+             
+         }else if([comps weekday]==3){
+             weekStr=@"星期二";
+             
+         }else if([comps weekday]==4){
+             weekStr=@"星期三";
+             
+         }else if([comps weekday]==5){
+             weekStr=@"星期四";
+             
+         }else if([comps weekday]==6){
+             weekStr=@"星期五";
+             
+         }else {
+             weekStr=@"星期六";
+             
+         }
+         
+         //    if ([weather isKindOfClass:[NSNull class]])
+         //    {
+         citylabel.text = city;
+         weatherlabel.text = weather;
+         templabel.text=temperature1;
+         timelabel.text=[NSString stringWithFormat:@" ~ %@",temperature2];
+         Date_label.text =[NSString stringWithFormat:@"%@%@",locationString,weekStr];
+         
+         //    }
+         
 
+     }
+    
 }
 - (void)requestFailed:(ASIHTTPRequest *)request
 {

@@ -424,11 +424,11 @@ extern UserInfo *user;
              修改内容 添加存储用户信息的全局变量
              */
             //**************************
-            NSArray *person = [sqHttpSer.requestDict objectForKey:@"person_info"];
-            NSArray *car_info = [sqHttpSer.requestDict objectForKey:@"car_info"];
-            NSArray *jdh_info = [sqHttpSer.requestDict objectForKey:@"jdh_info"];
-            NSArray *address_info = [sqHttpSer.requestDict objectForKey:@"address_info"];
-            user = [[UserInfo alloc]initWithPersonArr:person CarArr:car_info JdhArr:jdh_info AddressArr:address_info Session:[sqHttpSer.requestDict objectForKey:@"session"]];
+            NSArray *person = [sqHttpSer.responDict objectForKey:@"person_info"];
+            NSArray *car_info = [sqHttpSer.responDict objectForKey:@"car_info"];
+            NSArray *jdh_info = [sqHttpSer.responDict objectForKey:@"jdh_info"];
+            NSArray *address_info = [sqHttpSer.responDict objectForKey:@"address_info"];
+            user = [[UserInfo alloc]initWithPersonArr:person CarArr:car_info JdhArr:jdh_info AddressArr:address_info Session:[sqHttpSer.responDict objectForKey:@"session"]];
             //******************************
             
             [SVProgressHUD showSuccessWithStatus:@"添加成功" duration:1];
