@@ -611,6 +611,8 @@
 		D5537AD51AC13AE900B0405B /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D5537AD21AC13AE900B0405B /* RDVTabBarItem.m */; };
 		D556DE461AC25444006CB83F /* cityList.plist in Resources */ = {isa = PBXBuildFile; fileRef = D556DE441AC25444006CB83F /* cityList.plist */; };
 		D556DE471AC25444006CB83F /* ProvinceCity.plist in Resources */ = {isa = PBXBuildFile; fileRef = D556DE451AC25444006CB83F /* ProvinceCity.plist */; };
+		D556DE4A1AC27AC0006CB83F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D556DE491AC27AC0006CB83F /* ViewController.m */; };
+		D556DE4D1AC27B5A006CB83F /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D556DE4C1AC27B59006CB83F /* OneViewController.m */; };
 		D5580E0A1ABAEA5100E77CE9 /* ShanChuViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5580E091ABAEA5100E77CE9 /* ShanChuViewTableViewController.m */; };
 		D5580E0D1ABAEAE600E77CE9 /* QieHuanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5580E0C1ABAEAE600E77CE9 /* QieHuanViewController.m */; };
 		D56085281980F8C900EA878E /* fuwushangjiaxiangxi.m in Sources */ = {isa = PBXBuildFile; fileRef = D56085271980F8C900EA878E /* fuwushangjiaxiangxi.m */; };
@@ -1974,6 +1976,10 @@
 		D5537AD21AC13AE900B0405B /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
 		D556DE441AC25444006CB83F /* cityList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cityList.plist; sourceTree = "<group>"; };
 		D556DE451AC25444006CB83F /* ProvinceCity.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvinceCity.plist; sourceTree = "<group>"; };
+		D556DE481AC27AC0006CB83F /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D556DE491AC27AC0006CB83F /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D556DE4B1AC27B59006CB83F /* OneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OneViewController.h; sourceTree = "<group>"; };
+		D556DE4C1AC27B59006CB83F /* OneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OneViewController.m; sourceTree = "<group>"; };
 		D5580E081ABAEA5100E77CE9 /* ShanChuViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShanChuViewTableViewController.h; sourceTree = "<group>"; };
 		D5580E091ABAEA5100E77CE9 /* ShanChuViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShanChuViewTableViewController.m; sourceTree = "<group>"; };
 		D5580E0B1ABAEAE600E77CE9 /* QieHuanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QieHuanViewController.h; sourceTree = "<group>"; };
@@ -2822,6 +2828,10 @@
 		C47CF70418F648FB000936AD = {
 			isa = PBXGroup;
 			children = (
+				D556DE4B1AC27B59006CB83F /* OneViewController.h */,
+				D556DE4C1AC27B59006CB83F /* OneViewController.m */,
+				D556DE481AC27AC0006CB83F /* ViewController.h */,
+				D556DE491AC27AC0006CB83F /* ViewController.m */,
 				D56C6DD91ABEE07900A7E615 /* AXHRevamped */,
 				D5134FA01AB921C300E904A5 /* ZZL */,
 				C40974CD1AB5504C006ACBF6 /* 我的 */,
@@ -6195,6 +6205,7 @@
 				D510057A1A354D8900EA620A /* SDWebImageDownloader.m in Sources */,
 				D54266DF1977C12700886D6C /* CalendarDateUtil.m in Sources */,
 				D56C70681ABEE07B00A7E615 /* AXHSQForumCell.m in Sources */,
+				D556DE4D1AC27B5A006CB83F /* OneViewController.m in Sources */,
 				D512EC4E1A4A5F8C009564E4 /* ZHMyMessageHttpRequest.m in Sources */,
 				D53EFFA319ECCAD000D67800 /* URL.m in Sources */,
 				C4C27BC0193855B5009D1C9B /* CDataScanner.m in Sources */,
@@ -6429,6 +6440,7 @@
 				D5A93BB919863D240069FCB4 /* SheQuHuDongViewController.m in Sources */,
 				D5B5DD2C1A0B48740028327E /* BangDingXinXi.m in Sources */,
 				D56C6F961ABEE07B00A7E615 /* ALAsset+accessibilityLabel.m in Sources */,
+				D556DE4A1AC27AC0006CB83F /* ViewController.m in Sources */,
 				D527D2C91A36C4710028D8F3 /* UIScrollView+MJRefresh.m in Sources */,
 				D521056E1A5FD96900F01311 /* LaiWuNewViewController.m in Sources */,
 				C4A8B296192380F8007ACABA /* FaTieZiViewController.m in Sources */,
