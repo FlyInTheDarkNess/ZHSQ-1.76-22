@@ -366,13 +366,23 @@ extern UserInfo *user;
 //        
 //        NSLog(@"path:%@",path);
         //ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:path]];
-        NSString *googleURL = @"http://www.weather.com.cn/data/cityinfo/101121601.html";
+        // 最新天气网址 ：http://m.weather.com.cn/atad/101230201.html
+        NSString *fileName = [[NSBundle mainBundle] pathForResource:@"cityList" ofType:@"plist"];
+        NSDictionary *dic = [[NSMutableDictionary alloc]initWithContentsOfFile:fileName];
+        NSLog(@"天气查询代码：%@",dic);
+        NSString *cityName = user.currentAddress.city_name;
+        NSString *cityNumber = [NSString stringWithFormat:@"%@",dic[cityName]];
+        NSString *googleURL = [NSString stringWithFormat:@"http://www.weather.com.cn/data/cityinfo/%@.html",cityNumber];
+//         NSString *googleURL = @"http://m.weather.com.cn/atad/101121601.html";
          //NSString *path = @"http://m.weather.com.cn/data/101010100.html";
         
         ASIFormDataRequest *request = [[ASIFormDataRequest alloc] initWithURL:[NSURL URLWithString:googleURL]];
         
         
         request.delegate = self;
+        
+        
+        
         [request startAsynchronous];
         
     }
@@ -971,6 +981,7 @@ extern UserInfo *user;
             NSError *error = nil;
             NSDictionary *rootDic = [parser objectWithString:str_jiemi error:&error];
             NSString *daima=[rootDic objectForKey:@"ecode"];
+            NSLog(@"资讯信息内容：%@ - %@",daima,rootDic);
             int intString = [daima intValue];
             if (intString==4000)
             {
@@ -1567,7 +1578,7 @@ extern UserInfo *user;
     NSString *path=[paths objectAtIndex:0];
     NSLog(@"path = %@",path);
     NSString *name = [NSString stringWithFormat:@"%@-%@-%@.plist",str_area,str_community,xiaoquIDString];
-    NSString *filename=[path stringByAppendingPathComponent:name];
+    NSString *filename = [path stringByAppendingPathComponent:name];
     NSMutableArray *messageCountArr = [NSMutableArray array];
     plistDic = [[NSMutableDictionary alloc]initWithContentsOfFile:filename];
     NSArray * messageArr=plistDic[@"messageCountArr"];
@@ -1833,6 +1844,7 @@ extern UserInfo *user;
 
     
 }
+
 -(void)Login
 {
     if (Session.length>0 && ![Session isEqualToString:@""] && ![Session isEqualToString:nil])
@@ -1846,6 +1858,7 @@ extern UserInfo *user;
         [self presentViewController:loqin animated:NO completion:nil];
     }
 }
+
 -(void)Logout
 {
         @try
@@ -1910,53 +1923,60 @@ extern UserInfo *user;
         }      
     
 }
+
 -(void)YouHuiZiXun
 {
     PreferentialINFOViewController *youhui=[[PreferentialINFOViewController alloc]init];
     [self presentViewController:youhui animated:NO completion:nil];
 }
+
 -(void)EARNFaceMoney
 {
 
 }
+
 -(void)MyFaceMoneyDetails
 {
     
 }
+
 -(void)MyFaceMoney
 {
 
 }
+
 -(void)MyProfile
 {
     
 }
+
 -(void)ForgotPassword
 {
     ModifyPasswordViewController *zhaohui=[[ModifyPasswordViewController alloc]init];
     [self presentViewController:zhaohui animated:NO completion:nil];
 }
+
 -(void)woyaobaoliao
 {
         AXHNewPostViewController *BLVCtr = [[AXHNewPostViewController alloc]initWithNibName:@"AXHNewPostViewController" bundle:nil withType:PostTypeNews withBackDict:nil];
         UINavigationController *naVCtr = [[UINavigationController alloc]initWithRootViewController:BLVCtr];
         [self presentViewController:naVCtr animated:YES completion:NULL];
-        
-    
 }
+
 -(void)gonggaotongzhi
 {
 //    TongZhiViewController *tongzhiview=[[TongZhiViewController alloc]init];
 //    [self presentViewController:tongzhiview animated:NO completion:nil];
     PropertyNoticeViewController *tongzhiview=[[PropertyNoticeViewController alloc]init];
     [self presentViewController:tongzhiview animated:NO completion:nil];
-
 }
+
 -(void)zhangdanjiaofei
 {
     KuaiJieJiaoFeiViewController *jiaofei=[[KuaiJieJiaoFeiViewController alloc]init];
     [self presentViewController:jiaofei animated:NO completion:nil];
 }
+
 -(void)woyanfayan
 {
     if (![Session isEqualToString:@""] && Session.length>0)
@@ -1964,20 +1984,20 @@ extern UserInfo *user;
         AXHSQForumViewController *sqForVCtr = [[AXHSQForumViewController alloc]init];
         UINavigationController *NAVCtr = [[UINavigationController alloc]initWithRootViewController:sqForVCtr];
         [self presentViewController:NAVCtr animated:NO completion:nil];
-
     }
     else
     {
         [self Login];
     }
-
 }
+
 -(void)shenghuobang
 {
     LifeToHelpViewController *lToHelpVCtr = [[LifeToHelpViewController alloc]init];
     UINavigationController *naVCtr = [[UINavigationController alloc]initWithRootViewController:lToHelpVCtr];
     [self presentViewController:naVCtr animated:YES completion:NULL];
 }
+
 -(void)shequxuanze
 {
 
@@ -1990,9 +2010,8 @@ extern UserInfo *user;
     SheQuXuanZeViewController *xuanze=[[SheQuXuanZeViewController alloc]init];
     [self presentViewController:xuanze animated:NO completion:nil];
     }
-
-
 }
+
 #pragma mark -
 #pragma mark ASIHTTPRequestDelegate
 - (void)requestStarted:(ASIHTTPRequest *)request
@@ -2002,7 +2021,6 @@ extern UserInfo *user;
 
 - (void)requestFinished:(ASIHTTPRequest *)request
  {
-    
 	[activityIndicator stopAnimating];
 	 NSString *str = request.responseString;
     NSMutableDictionary *jsonoObj = [str JSONValue];
@@ -2050,15 +2068,15 @@ extern UserInfo *user;
         
     }
     
-    if ([weather isKindOfClass:[NSNull class]])
-    {
+//    if ([weather isKindOfClass:[NSNull class]])
+//    {
         citylabel.text = city;
         weatherlabel.text = weather;
         templabel.text=temperature1;
         timelabel.text=[NSString stringWithFormat:@" ~ %@",temperature2];
         Date_label.text =[NSString stringWithFormat:@"%@%@",locationString,weekStr];
         
-    }
+//    }
     
 
 }
@@ -2981,10 +2999,11 @@ extern UserInfo *user;
             
             if (inta==3007)
             {
-                [SVProgressHUD showErrorWithStatus:@"没有查找到数据" duration:1];
-                tableview.hidden=YES;
+                label_Member.text=[NSString stringWithFormat:@"铜牌会员 | 笑脸币：0"];
+                [label_Member sizeToFit];
                 return;
             }
+            
             if (inta==1000)
             {
                 label_Member.text=[NSString stringWithFormat:@"铜牌会员 | 笑脸币：%@",[sqHttpSer.responDict  objectForKey:@"credit_usable"]];

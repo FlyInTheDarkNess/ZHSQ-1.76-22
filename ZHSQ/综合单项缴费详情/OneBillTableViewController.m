@@ -41,9 +41,16 @@ extern NSString *charge_mode;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"backBtn"] style:UIBarButtonItemStyleBordered target:self action:@selector(backToList)];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = [UIColor whiteColor];
+    if ([self.title isEqualToString:@"(水费)详情"]||[self.title isEqualToString:@"(电费)详情"]) {
+        itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"建筑面积",@"单价",@"起码",@"止码",@"缴费期间",@"基础金额",@"费用介绍",@"优惠金额",@"应缴金额",@"费用介绍2"];
+        itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"price",@"value_start",@"value_end",@"缴费期间",@"money1",@"detail",@"money2",@"money_sum",@"应缴金额 = 基础金额 - 优惠金额"];
+    }
+    else{
+        itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"建筑面积",@"缴费期间",@"基础金额",@"费用介绍",@"优惠金额",@"应缴金额",@"费用介绍2"];
+        itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"缴费期间",@"money1",@"detail",@"money2",@"money_sum",@"应缴金额 = 基础金额 - 优惠金额"];
+    }
     
-    itemTitleArr = @[@"账单编号",@"收费单位",@"客户姓名",@"客户地址",@"建筑面积",@"缴费期间",@"基础金额",@"费用介绍",@"优惠金额",@"应缴金额",@"费用介绍2"];
-    itemDetailArr = @[@"pay_id",@"property_name",@"username",@"客户地址",@"square",@"缴费期间",@"money1",@"detail",@"money2",@"money_sum",@"应缴金额 = 基础金额 - 优惠金额"];
+
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -78,6 +85,7 @@ extern NSString *charge_mode;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.detailTextLabel.numberOfLines = 0;
+    cell.textLabel.numberOfLines = 0;
     cell.textLabel.font = [UIFont systemFontOfSize:14];
     cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
     NSString *itemTitle = [NSString stringWithFormat:@"%@:",itemTitleArr[indexPath.row]];
