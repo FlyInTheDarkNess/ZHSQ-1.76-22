@@ -2111,93 +2111,176 @@ extern UserInfo *user;
 {
     Type=@"8";
     SheQuFuWu_Title=@"外卖";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
-
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 }
 -(void)weixiu
 {
     Type=@"1";
     SheQuFuWu_Title=@"维修";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 
 }
 -(void)jiazheng
 {
     Type=@"3";
     SheQuFuWu_Title=@"家政";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 
 }
 -(void)yiliao
 {
     Type=@"4";
     SheQuFuWu_Title=@"医疗";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 
 }
 -(void)jiudian
 {
     Type=@"7";
     SheQuFuWu_Title=@"酒店";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
     
 }
 -(void)jianshen
 {
     Type=@"13";
     SheQuFuWu_Title=@"健身";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 }
 -(void)luyou
 {
     Type=@"12";
     SheQuFuWu_Title=@"旅游";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 }
 -(void)yule
 {
     Type=@"10";
     SheQuFuWu_Title=@"娱乐";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 
 }
 -(void)ershou
 {
     Type=@"17";
     SheQuFuWu_Title=@"酒水";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 }
 -(void)peixun
 {
     Type=@"11";
     SheQuFuWu_Title=@"培训";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 
 }
 -(void)gengduo
 {
     Type=@"18";
     SheQuFuWu_Title=@"房产";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 
 }
 -(void)youhuiquan
 {
     Type=@"16";
     SheQuFuWu_Title=@"家具";
+    /*
+     修改人 赵忠良
+     修改时间 15.3.11
+     修改原因：解决重复返回及返回页面错误的问题
+     */
     FuWwYingYongViewController *fuwu=[[FuWwYingYongViewController alloc]init];
-    [self presentViewController:fuwu animated:NO completion:nil];
+    UINavigationController *nVC = [[UINavigationController alloc]initWithRootViewController:fuwu];
+    nVC.navigationBar.hidden = YES;
+    [self presentViewController:nVC animated:YES completion:nil];
 }
 -(void)Preferential
 {
